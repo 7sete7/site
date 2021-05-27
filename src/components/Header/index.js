@@ -13,8 +13,8 @@ import WhatsIcon from "@material-ui/icons/WhatsApp";
 import MailIcon from "@material-ui/icons/MailOutline";
 
 const Header = () => (
-  <AppBar position="static" color="transparent">
-    <Toolbar disableGutters={false}>
+  <AppBar position="static" color="#fff" style={{ zIndex: 150 }}>
+    <Toolbar disableGutters={false} style={{ zIndex: 150 }}>
       <Grid container>
         <Grid item  container xs={4} justify="center">
           <Typography variant="h4" color="inherit" noWrap>

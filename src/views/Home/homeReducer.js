@@ -11,7 +11,7 @@ export const home = createSlice({
         title: "Estudo de caso Doof",
         description:
           "Identificando oportunidades para capturar Perry o ornitorrinco",
-        tags: ["Figma"],
+        tags: ["Figma", "Leo"],
         link: "#",
       },
     ],

@@ -47,8 +47,8 @@ export default function Home() {
       </Container>
       <Box mt={5} py={3} bgcolor="#EEF0FF">
         <Container maxWidth="lg">
-          <Box display="flex">
-            <div style={{ flexGrow: 1 }}>
+          <Box display="flex" flexWrap="wrap">
+            <div style={{ flexGrow: 1, paddingBottom: 16 }}>
               <Typography variant="h5">Eduardo.viva</Typography>
               <Typography variant="h5" color="secondary">
                 UX / UI / Product Designer
