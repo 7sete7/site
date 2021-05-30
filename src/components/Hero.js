@@ -10,51 +10,63 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const Hero = ({ classes }) => {
   const ref = React.useRef();
-  return(
-  <Box display="flex">
-    <Box py={3} className={classes.container}>
-      <Typography color="textSecondary">UX / UI / Product Designer</Typography>
-      <Typography color="textPrimary" variant="h5" gutterBottom>
-        Olá
-      </Typography>
-      <Typography color="textPrimary" paragraph>
-        meu nome é Eduardo
-      </Typography>
-      <Typography color="textPrimary" paragraph>
-        Meu objetivo é melhorar o mundo entregando experiências melhores através do design. Serei referência no meu
-        trabalho, por isso tenho a meta de alcançar Design Lead em 5 anos. Também faço projetos pessoais de dev por
-        hobby.
-      </Typography>
+  return (
+    <Box display="flex">
+      <Box py={3} className={classes.container}>
+        <Typography color="secondary" gutterBottom>
+          <b>UX / UI / Product Designer</b>
+        </Typography>
+        <Typography color="textPrimary" variant="h3" style={{ marginBottom: -15 }}>
+          Olá
+        </Typography>
+        <Typography color="textPrimary" variant="h3" style={{ fontWeight: 300 }} paragraph>
+          meu nome é{" "}
+          <Typography color="primary" variant="h3" component="span">
+            <b>Eduardo</b>
+          </Typography>
+        </Typography>
+        <Typography color="textPrimary" paragraph>
+          Meu <b>objetivo</b> é melhorar o mundo entregando experiências melhores através do design. Serei referência no
+          meu trabalho, por isso tenho a <b>meta</b> de alcançar Design Lead em 5 anos.
+        </Typography>
+        <Typography color="textPrimary" paragraph>
+          Também faço projetos pessoais de dev por hobby.
+        </Typography>
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={5}>
-          <Button color="secondary" variant="contained" fullWidth>
-            Meus projetos
-          </Button>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={4}>
+            <Button color="secondary" variant="contained" fullWidth disableElevation>
+              <Typography variant="body2">
+                <b>Meus projetos</b>
+              </Typography>
+            </Button>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Button color="primary" variant="contained" endIcon={<ExternalIcon />} fullWidth disableElevation>
+              <Typography variant="body2">
+                <b>Meu currículo</b>
+              </Typography>
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={5}>
-          <Button color="primary" variant="contained" endIcon={<ExternalIcon />} fullWidth>
-            Currículo
-          </Button>
-        </Grid>
-      </Grid>
-    </Box>
-    <Box flexGrow={1} className={classes.boxContainer}>
-      <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
-        <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
-          <Box width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}>
-            <Image renderRef={ref} />
+      </Box>
+      <Box flexGrow={1} className={classes.boxContainer}>
+        <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
+          <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
+            <Box width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}>
+              <Image renderRef={ref} />
+            </Box>
+          </Box>
+        </Box>
+        <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
+          <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
+            <Box ref={ref} width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}></Box>
           </Box>
         </Box>
       </Box>
-      <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
-        <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
-          <Box ref={ref} width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}></Box>
-        </Box>
-      </Box>
     </Box>
-  </Box>
-)};
+  );
+};
 
 const style = theme => ({
   container: {
@@ -64,6 +76,7 @@ const style = theme => ({
     },
   },
   boxContainer: {
+    zIndex: -5,
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },

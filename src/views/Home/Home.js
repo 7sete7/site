@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import map from "lodash/map";
 
 import Button from "@material-ui/core/Button";
@@ -18,65 +18,80 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Hero from "../../components/Hero";
 import LongCard from "../../components/LongCard";
+import CompactCard from "../../components/CompactCard";
 import WavyBox from "../../components/WavyBox";
 
-export default function Home() {
-  const { projects, posts } = useSelector(getData);
+import withStyles from "@material-ui/core/styles/withStyles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-  const dispatch = useDispatch();
+const Home = ({ classes }) => {
+  const { projects, posts } = useSelector(getData);
+  const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
+
+  const CardComponent = useMemo(() => isXSmall ? CompactCard : LongCard, [isXSmall]);
 
   return (
     <div>
       <Container maxWidth="lg">
-        <Hero />
-        <Box mt={5}>
-          <Typography variant="h4" paragraph gutterBottom>
+        <Box mt={6}>
+          <Hero />
+        </Box>
+        <Box mt={15}>
+          <Typography id="projetos" variant="h4" paragraph gutterBottom>
             Meus projetos principais
           </Typography>
-          {map(projects, React.createFactory(LongCard))}
+          {map(projects, project => (
+            <CardComponent key={project.title} {...project} linkName="Ver projeto" />
+          ))}
         </Box>
       </Container>
       <WavyBox />
       <Container maxWidth="lg">
-        <Box mt={8}>
-          <Typography variant="h4" paragraph gutterBottom>
+        <Box mt={15}>
+          <Typography id="posts" variant="h4" paragraph gutterBottom>
             Meus posts principais
           </Typography>
-          {map(posts, React.createFactory(LongCard))}
+          {map(posts, post => (
+            <CardComponent key={post.title} {...post} linkName="Ver post" />
+          ))}
         </Box>
       </Container>
-      <Box mt={5} py={3} bgcolor="#EEF0FF">
+      <Box id="contatos" mt={10} py={3} bgcolor="#EEF0FF">
         <Container maxWidth="lg">
           <Box display="flex" flexWrap="wrap">
             <div style={{ flexGrow: 1, paddingBottom: 16 }}>
-              <Typography variant="h5">Eduardo.viva</Typography>
-              <Typography variant="h5" color="secondary">
-                UX / UI / Product Designer
+              <Typography variant="h5" gutterBottom>
+                Eduardo.viva
+              </Typography>
+              <Typography color="secondary">
+                <b>UX / UI / Product Designer</b>
               </Typography>
             </div>
             <div style={{ flexGrow: 1 }}>
-              <Typography>Vamos conversar</Typography>
+              <Typography paragraph>
+                <b>Vamos conversar</b>
+              </Typography>
               <Box pl={2}>
-                <Box display="flex" mb={1}>
-                  <Icon style={{ flexGrow: 0.1 }}>
+                <Box display="flex" mb={2}>
+                  <Icon className={classes.icon}>
                     <LinIcon />
                   </Icon>
                   <Typography>linkedi.com/in/edu-viva</Typography>
                 </Box>
-                <Box display="flex" mb={1}>
-                  <Icon style={{ flexGrow: 0.1 }}>
+                <Box display="flex" mb={2}>
+                  <Icon className={classes.icon}>
                     <WhatsIcon />
                   </Icon>
                   <Typography>(51) 99991-8720</Typography>
                 </Box>
-                <Box display="flex" mb={1}>
-                  <Icon style={{ flexGrow: 0.1 }}>
+                <Box display="flex" mb={2}>
+                  <Icon className={classes.icon}>
                     <MailIcon />
                   </Icon>
                   <Typography>eduardovivaa@gmail.com</Typography>
                 </Box>
-                <Box display="flex" mb={1}>
-                  <Icon style={{ flexGrow: 0.1 }}>
+                <Box display="flex" mb={2}>
+                  <Icon className={classes.icon}>
                     <GitIcon />
                   </Icon>
                   <Typography>behance.net/eduviva</Typography>
@@ -88,4 +103,13 @@ export default function Home() {
       </Box>
     </div>
   );
-}
+};
+
+const style = theme => ({
+  icon: {
+    width: 60,
+    maxWidth: "20vw",
+  },
+});
+
+export default withStyles(style)(Home);
