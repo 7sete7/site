@@ -7,10 +7,10 @@ import Box from "@material-ui/core/Box";
 import Link from "@material-ui/core/Link";
 
 import Icon from "@material-ui/core/Icon";
-import GitIcon from "@material-ui/icons/GitHub";
+import MailIcon from "@material-ui/icons/Mail";
 import LinIcon from "@material-ui/icons/LinkedIn";
 import WhatsIcon from "@material-ui/icons/WhatsApp";
-import MailIcon from "@material-ui/icons/MailOutline";
+import BehanceIcon from "../../components/Icons/Behance";
 
 import { getData } from "./homeReducer";
 import { useSelector } from "react-redux";
@@ -71,7 +71,7 @@ const Home = ({ classes }) => {
                 <b>Vamos conversar</b>
               </Typography>
               <Box pl={2}>
-                <Box display="flex" mb={2}>
+                <Box display="flex" alignItems="center" mb={2}>
                   <Icon className={classes.icon}>
                     <LinIcon />
                   </Icon>
@@ -79,7 +79,7 @@ const Home = ({ classes }) => {
                     linkedin.com/in/edu-viva
                   </Link>
                 </Box>
-                <Box display="flex" mb={2}>
+                <Box display="flex" alignItems="center" mb={2}>
                   <Icon className={classes.icon}>
                     <WhatsIcon />
                   </Icon>
@@ -87,15 +87,15 @@ const Home = ({ classes }) => {
                     (51) 99991-8720
                   </Link>
                 </Box>
-                <Box display="flex" mb={2}>
+                <Box display="flex" alignItems="center" mb={2}>
                   <Icon className={classes.icon}>
                     <MailIcon />
                   </Icon>
                   <Typography color="textPrimary">eduardovivaa@gmail.com</Typography>
                 </Box>
-                <Box display="flex" mb={2}>
+                <Box display="flex" alignItems="center" mb={2}>
                   <Icon className={classes.icon}>
-                    <GitIcon />
+                    <BehanceIcon />
                   </Icon>
                   <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">
                     behance.net/eduviva

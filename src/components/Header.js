@@ -11,7 +11,7 @@ import Icon from "@material-ui/core/Icon";
 import GitIcon from "@material-ui/icons/GitHub";
 import LinIcon from "@material-ui/icons/LinkedIn";
 import WhatsIcon from "@material-ui/icons/WhatsApp";
-import MailIcon from "@material-ui/icons/MailOutline";
+import BehanceIcon from "./Icons/Behance";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => (
@@ -63,9 +63,11 @@ const Header = () => (
                   <WhatsIcon />
                 </Icon>
               </Link>
-              <Icon>
-                <MailIcon />
-              </Icon>
+              <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">
+                <Icon>
+                  <BehanceIcon />
+                </Icon>
+              </Link>
             </Box>
           </Grid>
         </Hidden>
