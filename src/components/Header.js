@@ -15,7 +15,7 @@ import MailIcon from "@material-ui/icons/MailOutline";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => (
-  <AppBar position="static" color="#fff" style={{ zIndex: 150 }}>
+  <AppBar position="static" color="initial" style={{ zIndex: 150 }}>
     <Toolbar disableGutters={false} style={{ zIndex: 150 }}>
       <Grid container>
         {/* Logo */}
@@ -48,15 +48,21 @@ const Header = () => (
         <Hidden smDown>
           <Grid item container wrap="nowrap" xs={4} justify="center">
             <Box display="flex" justifyContent="space-evenly" flexGrow="0.4" alignItems="center">
-              <Icon>
-                <GitIcon />
-              </Icon>
-              <Icon>
-                <LinIcon />
-              </Icon>
-              <Icon>
-                <WhatsIcon />
-              </Icon>
+              <Link href="//github.com/EduViva" target="_blank" color="textPrimary" underline="none">
+                <Icon>
+                  <GitIcon />
+                </Icon>
+              </Link>
+              <Link href="//linkedin.com/in/edu-viva" target="_blank" color="textPrimary" underline="none">
+                <Icon>
+                  <LinIcon />
+                </Icon>
+              </Link>
+              <Link href="//wa.me/51999918720" target="_blank" color="textPrimary" underline="none">
+                <Icon>
+                  <WhatsIcon />
+                </Icon>
+              </Link>
               <Icon>
                 <MailIcon />
               </Icon>
@@ -65,7 +71,11 @@ const Header = () => (
         </Hidden>
         <Hidden mdUp>
           <Grid item container wrap="nowrap" xs={4} justify="flex-end" alignItems="flex-end">
-            <Link href="#contatos" color="textPrimary"><Icon><MenuIcon /></Icon></Link>
+            <Link href="#contatos" color="textPrimary">
+              <Icon>
+                <MenuIcon />
+              </Icon>
+            </Link>
           </Grid>
         </Hidden>
       </Grid>

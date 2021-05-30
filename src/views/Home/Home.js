@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import map from "lodash/map";
 
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import Link from "@material-ui/core/Link";
 
 import Icon from "@material-ui/core/Icon";
 import GitIcon from "@material-ui/icons/GitHub";
@@ -14,7 +13,7 @@ import WhatsIcon from "@material-ui/icons/WhatsApp";
 import MailIcon from "@material-ui/icons/MailOutline";
 
 import { getData } from "./homeReducer";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Hero from "../../components/Hero";
 import LongCard from "../../components/LongCard";
@@ -28,7 +27,7 @@ const Home = ({ classes }) => {
   const { projects, posts } = useSelector(getData);
   const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
 
-  const CardComponent = useMemo(() => isXSmall ? CompactCard : LongCard, [isXSmall]);
+  const CardComponent = useMemo(() => (isXSmall ? CompactCard : LongCard), [isXSmall]);
 
   return (
     <div>
@@ -76,25 +75,31 @@ const Home = ({ classes }) => {
                   <Icon className={classes.icon}>
                     <LinIcon />
                   </Icon>
-                  <Typography>linkedi.com/in/edu-viva</Typography>
+                  <Link href="//linkedin.com/in/edu-viva" target="_blank" color="textPrimary" underline="none">
+                    linkedin.com/in/edu-viva
+                  </Link>
                 </Box>
                 <Box display="flex" mb={2}>
                   <Icon className={classes.icon}>
                     <WhatsIcon />
                   </Icon>
-                  <Typography>(51) 99991-8720</Typography>
+                  <Link href="//wa.me/51999918720" target="_blank" color="textPrimary" underline="none">
+                    (51) 99991-8720
+                  </Link>
                 </Box>
                 <Box display="flex" mb={2}>
                   <Icon className={classes.icon}>
                     <MailIcon />
                   </Icon>
-                  <Typography>eduardovivaa@gmail.com</Typography>
+                  <Typography color="textPrimary">eduardovivaa@gmail.com</Typography>
                 </Box>
                 <Box display="flex" mb={2}>
                   <Icon className={classes.icon}>
                     <GitIcon />
                   </Icon>
-                  <Typography>behance.net/eduviva</Typography>
+                  <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">
+                    behance.net/eduviva
+                  </Link>
                 </Box>
               </Box>
             </div>

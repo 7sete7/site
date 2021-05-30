@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-import withTheme from "@material-ui/core/styles/withTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { CurvedLine, BoxThingy } from "./svgs";
@@ -93,4 +92,4 @@ const style = theme => ({
   },
 });
 
-export default withStyles(style)(withTheme(WavyBox));
+export default withStyles(style)(WavyBox);

@@ -19,7 +19,7 @@ const CompactCard = ({ image, title, description, tags, link, linkName = "Ver pr
         </Typography>
       }
       subheader={map(tags, tag => (
-        <Tag tag={tag} />
+        <Tag key={tag} tag={tag} />
       ))}
     />
     <CardMedia image={image} className={classes.image} />

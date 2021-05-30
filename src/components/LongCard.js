@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+
 import React from "react";
 import map from "lodash/map";
 

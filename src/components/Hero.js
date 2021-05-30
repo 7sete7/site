@@ -59,7 +59,12 @@ const Hero = ({ classes }) => {
           </Box>
         </Box>
         <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
-          <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
+          <Box
+            width="94%"
+            height="94%"
+            bgcolor="secondary.main"
+            className={classes.boxes}
+            style={{ position: "relative" }}>
             <Box ref={ref} width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}></Box>
           </Box>
         </Box>
@@ -84,8 +89,8 @@ const style = theme => ({
       "&:nth-of-type(1)": {
         transform: "rotate(45deg)",
       },
-      top: -50,
-      right: -100,
+      top: -10,
+      right: -130,
       position: "absolute",
     },
   },
@@ -95,14 +100,22 @@ const style = theme => ({
     alignItems: "center",
     justifyContent: "center",
     "&.image": {
-      backgroundImage: "url(/images/foto.png)",
       transform: "rotate(45deg)",
+      overflow: "hidden",
     },
+  },
+  image: {
+    position: "absolute",
+    transform: "rotate(-45deg) translate(-130px)",
   },
 });
 
-const Image = withStyles(style)(({ renderRef, classes = {} }) => {
-  const Boxe = () => <Box width="95%" height="95%" bgcolor="primary.main" className={`${classes.boxes} image`} />;
+const Image = withStyles(style)(({ renderRef, classes }) => {
+  const Boxe = () => (
+    <Box width="95%" height="95%" bgcolor="primary.main" className={`${classes.boxes} image`}>
+      <img src="/images/foto.png" alt="" className={classes.image} />
+    </Box>
+  );
   return renderRef && renderRef.current ? ReactDOM.createPortal(<Boxe />, renderRef.current) : <Boxe />;
 });
 
