@@ -12,30 +12,21 @@ import Box from "@material-ui/core/Box";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 
-const LongCard = ({
-  image,
-  title,
-  description,
-  tags,
-  link,
-  imageFill = "cover",
-  linkName = "Ver projeto",
-  classes,
-}) => (
-  <Card className={classes.card}>
+const LongCard = ({ image, title, description, tags, link, imageFill = "cover", linkName = "Abrir", classes }) => (
+  <Card className={classes.card} variant="outlined">
     <CardMedia image={image} title="Doof" style={{ minWidth: "30%", backgroundSize: imageFill }} />
     <CardContent className={classes.cardContent}>
       <Typography variant="h5" gutterBottom>
         {title}
       </Typography>
       <Typography className="description" variant="subtitle1" paragraph>
-        {description}
+        <div dangerouslySetInnerHTML={{ __html: description }} />
       </Typography>
 
       <Box display="flex" justifyContent="space-between" alignItems="flex-end" pt={1}>
         <Box display="flex">
           {map(tags, tag => (
-            <Typography key={tag} className={classes.tag}>
+            <Typography variant="body2" key={tag} className={classes.tag}>
               {tag}
             </Typography>
           ))}
@@ -55,8 +46,10 @@ const LongCard = ({
 const styles = theme => ({
   card: {
     display: "flex",
-    height: 230,
-    maxHeight: "20vh",
+    height: 200,
+    "&:not(:last-child)": {
+      marginBottom: theme.spacing(3),
+    },
   },
   cardContent: {
     display: "flex",
@@ -65,11 +58,11 @@ const styles = theme => ({
 
     "& .description": {
       flexGrow: 1,
-      overflow: "hidden"
+      overflow: "hidden",
     },
   },
   tag: {
-    backgroundColor: "#CDEF77",
+    backgroundColor: theme.palette.auxiliar.main,
     padding: theme.spacing(0.5, 1),
     marginLeft: theme.spacing(0.5),
     borderRadius: 3,

@@ -14,15 +14,18 @@ const NotFound = () => {
   return <div>NotFound</div>;
 };
 
+const ROUTES = [];
+const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window.location.pathname);
+const subdomain = hasSubdomain ? /(\/.+?)[/$]/.exec(window.location.pathname)[1] : undefined;
+
 const theme = createMuiTheme(DefaultTheme);
 const App = () => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <div style={{ height: "100vh" }}>
       <Header />
-      <Router>
+      <Router basename={subdomain}>
         <Switch>
-          <Route path="/dashboard" component={Home} />
           <Route exact path="/" component={Home} />
           <Route component={NotFound} />
         </Switch>

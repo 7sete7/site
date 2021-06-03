@@ -2,8 +2,8 @@ import purple from "@material-ui/core/colors/deepPurple";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 
-export const primaryColor = { main: "#1F2572" };
-export const secondaryColor = { main: "#B122CB" };
+export const primaryColor = { main: "#1F2572", light: "#8E91B7" };
+export const secondaryColor = { main: "#B122CB", light: "#D78FE3" };
 
 const themeConfig = {
   typography: {
@@ -23,7 +23,8 @@ const themeConfig = {
     primary: primaryColor,
     secondary: secondaryColor,
     auxiliar: {
-      main: "#CDEF77"
+      main: "#CDEF77",
+      light: "#E5F6BA"
     },
     error: red,
 

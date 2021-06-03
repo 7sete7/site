@@ -25,7 +25,7 @@ const Hero = ({ classes }) => {
             <b>Eduardo</b>
           </Typography>
         </Typography>
-        <Typography color="textPrimary" paragraph>
+        <Typography color="textPrimary" style={{ marginTop: 32 }} paragraph>
           Meu <b>objetivo</b> é melhorar o mundo entregando experiências melhores através do design. Serei referência no
           meu trabalho, por isso tenho a <b>meta</b> de alcançar Design Lead em 5 anos.
         </Typography>
@@ -51,21 +51,21 @@ const Hero = ({ classes }) => {
         </Grid>
       </Box>
       <Box flexGrow={1} className={classes.boxContainer}>
-        <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
-          <Box width="94%" height="94%" bgcolor="secondary.main" className={classes.boxes}>
-            <Box width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}>
+        <Box width={500} height={500} bgcolor="auxiliar.light" className={classes.boxes}>
+          <Box width="94%" height="94%" bgcolor="secondary.light" className={classes.boxes}>
+            <Box width="95%" height="95%" bgcolor="primary.light" className={classes.boxes}>
               <Image renderRef={ref} />
             </Box>
           </Box>
         </Box>
-        <Box width={500} height={500} bgcolor="auxiliar.main" className={classes.boxes}>
+        <Box width={500} height={500} bgcolor="auxiliar.light" className={classes.boxes}>
           <Box
             width="94%"
             height="94%"
-            bgcolor="secondary.main"
+            bgcolor="secondary.light"
             className={classes.boxes}
             style={{ position: "relative" }}>
-            <Box ref={ref} width="95%" height="95%" bgcolor="primary.main" className={classes.boxes}></Box>
+            <Box ref={ref} width="95%" height="95%" bgcolor="primary.light" className={classes.boxes}></Box>
           </Box>
         </Box>
       </Box>

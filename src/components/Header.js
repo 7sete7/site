@@ -15,7 +15,7 @@ import BehanceIcon from "./Icons/Behance";
 import MenuIcon from "@material-ui/icons/Menu";
 
 const Header = () => (
-  <AppBar position="static" color="initial" style={{ zIndex: 150 }}>
+  <AppBar position="static" color="inherit">
     <Toolbar disableGutters={false} style={{ zIndex: 150 }}>
       <Grid container>
         {/* Logo */}
@@ -48,19 +48,19 @@ const Header = () => (
         <Hidden smDown>
           <Grid item container wrap="nowrap" xs={4} justify="center">
             <Box display="flex" justifyContent="space-evenly" flexGrow="0.4" alignItems="center">
-              <Link href="//github.com/EduViva" target="_blank" color="textPrimary" underline="none">
-                <Icon>
-                  <GitIcon />
-                </Icon>
-              </Link>
               <Link href="//linkedin.com/in/edu-viva" target="_blank" color="textPrimary" underline="none">
                 <Icon>
                   <LinIcon />
                 </Icon>
               </Link>
-              <Link href="//wa.me/51999918720" target="_blank" color="textPrimary" underline="none">
+              <Link href="//wa.me/5551999918720" target="_blank" color="textPrimary" underline="none">
                 <Icon>
                   <WhatsIcon />
+                </Icon>
+              </Link>
+              <Link href="//github.com/EduViva" target="_blank" color="textPrimary" underline="none">
+                <Icon>
+                  <GitIcon />
                 </Icon>
               </Link>
               <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">

@@ -35,7 +35,7 @@ const Home = ({ classes }) => {
         <Box mt={6}>
           <Hero />
         </Box>
-        <Box mt={15}>
+        <Box my={18}>
           <Typography id="projetos" variant="h4" paragraph gutterBottom>
             Meus projetos principais
           </Typography>
@@ -46,7 +46,7 @@ const Home = ({ classes }) => {
       </Container>
       <WavyBox />
       <Container maxWidth="lg">
-        <Box mt={15}>
+        <Box mt={13}>
           <Typography id="posts" variant="h4" paragraph gutterBottom>
             Meus posts principais
           </Typography>
@@ -55,7 +55,7 @@ const Home = ({ classes }) => {
           ))}
         </Box>
       </Container>
-      <Box id="contatos" mt={10} py={3} bgcolor="#EEF0FF">
+      <Box id="contatos" mt={13} py={3} bgcolor="#EEF0FF">
         <Container maxWidth="lg">
           <Box display="flex" flexWrap="wrap">
             <div style={{ flexGrow: 1, paddingBottom: 16 }}>
@@ -83,7 +83,7 @@ const Home = ({ classes }) => {
                   <Icon className={classes.icon}>
                     <WhatsIcon />
                   </Icon>
-                  <Link href="//wa.me/51999918720" target="_blank" color="textPrimary" underline="none">
+                  <Link href="//wa.me/5551999918720" target="_blank" color="textPrimary" underline="none">
                     (51) 99991-8720
                   </Link>
                 </Box>

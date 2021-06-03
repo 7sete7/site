@@ -11,7 +11,7 @@ import Link from "@material-ui/core/Link";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const CompactCard = ({ image, title, description, tags, link, linkName = "Ver projeto", classes }) => (
-  <Card>
+  <Card className={classes.card} variant="outlined">
     <CardHeader
       title={
         <Typography variant="body1">
@@ -39,16 +39,21 @@ const CompactCard = ({ image, title, description, tags, link, linkName = "Ver pr
 );
 
 const styles = theme => ({
+  card: {
+    "&:not(:last-child)": {
+      marginBottom: theme.spacing(3),
+    },
+  },
   image: {
     height: 0,
-    paddingTop: "56.25%" // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   cardContent: {
     maxHeight: 70,
     overflow: "hidden",
   },
   tag: {
-    backgroundColor: "#CDEF77",
+    backgroundColor: theme.palette.auxiliar.main,
     padding: "2px 5px",
     marginRight: theme.spacing(0.5),
     borderRadius: 3,
@@ -56,7 +61,7 @@ const styles = theme => ({
 });
 
 const Tag = withStyles(styles)(({ classes, tag }) => (
-  <Typography component="span" key={tag} className={classes.tag}>
+  <Typography component="span" variant="body2" key={tag} className={classes.tag}>
     {tag}
   </Typography>
 ));
