@@ -3,7 +3,7 @@ import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 
 export const primaryColor = { main: "#007DFF" };
-export const secondaryColor = { main: "#B122CB", light: "#D78FE3" };
+export const secondaryColor = { main: "#afafaf" };
 
 const themeConfig = {
   typography: {
@@ -14,6 +14,13 @@ const themeConfig = {
   palette: {
     primary: primaryColor,
     secondary: secondaryColor,
+  },
+  overrides: {
+    MuiTab: {
+      root: {
+        minWidth: "0!important",
+      },
+    },
   },
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
-import { MetaBlock, ContactBlock, ColorsBlock } from "./Blocks";
+import { MetaBlock, ContactBlock, ColorsBlock, PostsBlock } from "./Blocks";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const labelProps = { shrink: true, style: { fontWeight: 600 } };
@@ -16,6 +16,8 @@ const Admin = () => {
         <ContactBlock />
 
         <ColorsBlock />
+
+        <PostsBlock />
       </Container>
     </Box>
   );

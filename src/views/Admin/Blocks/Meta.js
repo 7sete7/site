@@ -8,7 +8,7 @@ import { Button } from "../../../components/Forms";
 import Block from "./Block";
 
 const Meta = () => (
-  <Block title={<b>Leo</b>}>
+  <Block title={<b>Meta dados</b>}>
     <Box p={2}>
       <Grid container spacing={1}>
         <Grid item xs={12} sm={8}>
