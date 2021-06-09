@@ -1,21 +1,23 @@
 import React, { useState, useCallback } from "react";
 
 import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import CardActions from "@material-ui/core/CardActions";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import MButton from "@material-ui/core/Button";
+import Button from "@material-ui/core/Button";
 
-import { Button } from "../../../components/Forms";
+import PreviewIcon from "@material-ui/icons/Visibility";
+import ImageIcon from "@material-ui/icons/Image";
+import LinkIcon from "@material-ui/icons/Link";
+import TagIcon from "@material-ui/icons/LocalOffer";
+
+import { Button as SaveButton, TextInput } from "../../../components/Forms";
 import Block from "./Block";
 
-const labelProps = { shrink: true, style: { fontWeight: 600 } };
 const Header = () => (
   <Box>
     <CardHeader
@@ -24,28 +26,19 @@ const Header = () => (
       subheader="23 projetos"
       style={{ padding: 0 }}
       action={
-        <Button variant="contained" color="primary" disableElevation style={{ margin: 10 }}>
+        <SaveButton variant="contained" color="primary" disableElevation style={{ margin: 10 }}>
           Novo Projeto
-        </Button>
+        </SaveButton>
       }
     />
   </Box>
 );
 
-const TabGroup = React.forwardRef((props, ref) => {
-  console.log(props);
-  return (
-    <ButtonGroup {...props} ref={ref} variant="outlined" color="secondary" style={{ width: "100%" }}>
-      {props.children}
-    </ButtonGroup>
-  );
-});
-
 const Posts = () => {
-  const [tab, setTab] = useState('preview');
+  const [tab, setTab] = useState("preview");
   const onTabChange = useCallback(newTab => () => setTab(newTab), []);
   const isTabActive = useCallback(value => tab === value, [tab]);
-  const tabColor = useCallback(value => isTabActive(value) ? "primary" : "secondary", [isTabActive]);
+  const tabColor = useCallback(value => (isTabActive(value) ? "primary" : "secondary"), [isTabActive]);
 
   return (
     <Block title={<Header />}>
@@ -54,53 +47,80 @@ const Posts = () => {
           <CardContent>
             <Grid container spacing={1}>
               <Grid item xs={12}>
-                <TextField variant="outlined" label="Título" fullWidth InputLabelProps={labelProps} />
+                <TextInput label="Título" fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  label="Descrição"
-                  fullWidth
-                  multiline
-                  rows={3}
-                  InputLabelProps={labelProps}
-                  placeholder="(com html)"
-                />
+                <TextInput label="Descrição" fullWidth multiline rows={3} placeholder="(com html)" />
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
                   <ButtonGroup variant="text" color="secondary" fullWidth>
-                    <MButton variant="text" color={tabColor('preview')} onClick={onTabChange('preview')}>
-                      P
-                    </MButton>
-                    <MButton variant="text" color={tabColor('image')} onClick={onTabChange('image')}>
-                      I
-                    </MButton>
-                    <MButton variant="text" color={tabColor('link')} onClick={onTabChange('link')}>
-                      L
-                    </MButton>
+                    <Button variant="text" color={tabColor("preview")} onClick={onTabChange("preview")}>
+                      <PreviewIcon />
+                    </Button>
+                    <Button variant="text" color={tabColor("image")} onClick={onTabChange("image")}>
+                      <ImageIcon />
+                    </Button>
+                    <Button variant="text" color={tabColor("link")} onClick={onTabChange("link")}>
+                      <LinkIcon />
+                    </Button>
+                    <Button variant="text" color={tabColor("tag")} onClick={onTabChange("tag")}>
+                      <TagIcon />
+                    </Button>
                   </ButtonGroup>
                 </Grid>
                 <Grid item xs={12}>
-                  <Box p={1}>
-                    {isTabActive('preview') && (
-                      <div>Oi preview</div>
+                  <Box p={2} pt={4}>
+                    {isTabActive("preview") && <div>[@TODO]</div>}
+
+                    {isTabActive("image") && (
+                      <Grid container spacing={1}>
+                        <Grid item xs={8}>
+                          <TextInput label="Link da imagem" fullWidth compact />
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Box width="100%" height="100%" border="1px solid #000">
+                            &nbsp;
+                          </Box>
+                        </Grid>
+                      </Grid>
                     )}
 
-                    {isTabActive('image') && (
-                      <div>Oi image</div>
-                    )}
-
-                    {isTabActive('link') && (
-                      <div>Oi link</div>
+                    {isTabActive("link") && (
+                      <Grid container spacing={1}>
+                        <Grid item xs={12}>
+                          <TextInput label="Link do card" fullWidth compact />
+                        </Grid>
+                      </Grid>
                     )}
                   </Box>
                 </Grid>
               </Grid>
             </Grid>
+
+            <Grid item xs={12}>
+              <ButtonGroup fullWidth color="primary" variant="outlined" disableElevation>
+                <Button variant="contained">Cover</Button>
+                <Button>Contain</Button>
+              </ButtonGroup>
+            </Grid>
           </CardContent>
+          <CardActions>
+            <Grid container>
+              <Grid item xs={5}>
+                <Button fullWidth variant="text" color="secondary">
+                  Excluir
+                </Button>
+              </Grid>
+              <Grid item xs={7}>
+                <Button fullWidth variant="contained" color="primary" disableElevation>
+                  Salvar
+                </Button>
+              </Grid>
+            </Grid>
+          </CardActions>
         </Card>
       </Box>
     </Block>

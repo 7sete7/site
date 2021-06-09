@@ -6,7 +6,6 @@ import Container from "@material-ui/core/Container";
 import { MetaBlock, ContactBlock, ColorsBlock, PostsBlock } from "./Blocks";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-const labelProps = { shrink: true, style: { fontWeight: 600 } };
 const Admin = () => {
   return (
     <Box py={5} bgcolor="#F4F6F8">
@@ -17,6 +16,7 @@ const Admin = () => {
 
         <ColorsBlock />
 
+        <PostsBlock />
         <PostsBlock />
       </Container>
     </Box>

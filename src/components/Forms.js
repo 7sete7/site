@@ -1,11 +1,6 @@
 import React from "react";
 
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
 import _Button from "@material-ui/core/Button";
 
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -25,7 +20,7 @@ const colorStyle = theme => ({
     position: "relative",
     marginBottom: theme.spacing(2),
     "& input": {
-      paddingRight: "25%"
+      paddingRight: "25%",
     },
     "& input ~ div": {
       position: "absolute",
@@ -47,4 +42,17 @@ export const ColorInput = withStyles(colorStyle)(props =>
       endAdornment: <div></div>,
     },
   }),
+);
+
+const inputStyle = theme => ({
+  root: {
+    "& input": {
+      padding: ({ compact }) => compact && 10,
+    },
+  },
+});
+
+const labelProps = { shrink: true, style: { fontWeight: 600 } };
+export const TextInput = withStyles(inputStyle)(props =>
+  React.createElement(TextField, { ...props, variant: "outlined", InputLabelProps: labelProps }),
 );

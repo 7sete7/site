@@ -1,9 +1,5 @@
-import purple from "@material-ui/core/colors/deepPurple";
-import red from "@material-ui/core/colors/red";
-import grey from "@material-ui/core/colors/grey";
-
-export const primaryColor = { main: "#007DFF" };
-export const secondaryColor = { main: "#afafaf" };
+import blue from "@material-ui/core/colors/blue";
+import grey from "@material-ui/core/colors/grey"
 
 const themeConfig = {
   typography: {
@@ -12,8 +8,10 @@ const themeConfig = {
     },
   },
   palette: {
-    primary: primaryColor,
-    secondary: secondaryColor,
+    primary: blue,
+    secondary: {
+      main: grey[400]
+    },
   },
   overrides: {
     MuiTab: {
