@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
-import { MetaBlock, ContactBlock, ColorsBlock, PostsBlock } from "./Blocks";
+import { MetaBlock, ContactBlock, ColorsBlock, PostsBlock, StudiesBlock } from "./Blocks";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const Admin = () => {
@@ -18,6 +18,8 @@ const Admin = () => {
 
         <PostsBlock />
         <PostsBlock />
+
+        <StudiesBlock />
       </Container>
     </Box>
   );
