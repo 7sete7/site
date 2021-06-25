@@ -12,7 +12,7 @@ import LinIcon from "@material-ui/icons/LinkedIn";
 import WhatsIcon from "@material-ui/icons/WhatsApp";
 import BehanceIcon from "../../components/Icons/Behance";
 
-import { getData } from "./homeReducer";
+import { getData } from "../../store/homeReducer";
 import { useSelector } from "react-redux";
 
 import Hero from "../../components/Hero";
@@ -110,11 +110,11 @@ const Home = ({ classes }) => {
   );
 };
 
-const style = theme => ({
+const style = {
   icon: {
     width: 60,
     maxWidth: "20vw",
   },
-});
+};
 
 export default withStyles(style)(Home);
