@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 
 import { Button as SaveButton, TextInput } from "../../../components/Forms";
 import Block from "./Block";
+import useBlock from "../../../hooks/useBlock";
 
 const Header = () => (
   <Box>
@@ -29,6 +30,7 @@ const Header = () => (
 );
 
 const Studies = () => {
+  const { onChange, onSave, values } = useBlock("studies");
   return (
     <Block title={<Header />}>
       <Box display="flex">

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//TODO loading state
 export const admin = createSlice({
   name: "admin",
   initialState: {},
@@ -11,7 +12,7 @@ export const admin = createSlice({
       state[payload.block] = Object.assign({}, state[payload.block], payload);
     },
     populate(state, { payload }) {
-      return payload;
+      if (payload != null) return payload;
     }
   },
 });

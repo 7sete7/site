@@ -11,8 +11,9 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 
-import { Button as SaveButton, TextInput } from "../../../components/Forms";
 import Block from "./Block";
+import { Button as SaveButton, TextInput } from "../../../components/Forms";
+import useBlock from "../../../hooks/useBlock";
 
 const Header = () => (
   <Box>
@@ -31,6 +32,7 @@ const Header = () => (
 );
 
 const Books = () => {
+  const { onChange, onSave, values } = useBlock("books");
   return (
     <Block title={<Header />}>
       <Box display="flex">

@@ -7,9 +7,10 @@ import { Button, TextInput } from "../../../components/Forms";
 import Block from "./Block";
 
 import useBlock from "../../../hooks/useBlock";
+import ResetIcon from "@material-ui/icons/Replay";
 
 const Meta = () => {
-  const { onChange, onSave, values } = useBlock("metadata");
+  const { onChange, onSave, onReset, values } = useBlock("metadata");
 
   return (
     <Block title={<b>Meta dados</b>}>
@@ -25,19 +26,17 @@ const Meta = () => {
             <TextInput label="Nome" fullWidth value={values.name} onChange={onChange("name")} />
           </Grid>
           <Grid item xs={12} sm={8}>
-            <TextInput
-              label="Descrição (com html)"
-              multiline
-              rows={4}
-              fullWidth
-              value={values.description}
-              onChange={onChange("description")}
-            />
+            <TextInput label="Descrição (com html)" multiline rows={4} fullWidth value={values.description} onChange={onChange("description")} />
           </Grid>
           <Grid item xs={12} sm={8}>
             <TextInput label="Link da foto" fullWidth value={values.pic} onChange={onChange("pic")} />
           </Grid>
-          <Grid container item xs={12} sm={8} justify="flex-end" alignItems="flex-end">
+          <Grid container item xs={12} sm={8} justify="flex-end" alignItems="flex-end" spacing={1}>
+            <Grid item xs={4} sm={3} md={2}>
+              <Button variant="contained" color="default" fullWidth disableElevation onClick={onReset}>
+                <ResetIcon />
+              </Button>
+            </Grid>
             <Grid item xs={12} sm={6} md={4}>
               <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
                 Salvar dados

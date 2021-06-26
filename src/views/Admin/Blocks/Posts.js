@@ -16,6 +16,7 @@ import TagIcon from "@material-ui/icons/LocalOffer";
 
 import { Button as SaveButton, TextInput } from "../../../components/Forms";
 import Block from "./Block";
+import useBlock from "../../../hooks/useBlock";
 
 const Header = () => (
   <Box>
@@ -38,6 +39,8 @@ const Posts = () => {
   const onTabChange = useCallback(newTab => () => setTab(newTab), []);
   const isTabActive = useCallback(value => tab === value, [tab]);
   const tabColor = useCallback(value => (isTabActive(value) ? "primary" : "secondary"), [isTabActive]);
+
+  const { onChange, onSave, values } = useBlock("posts");
 
   return (
     <Block title={<Header />}>

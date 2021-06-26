@@ -35,12 +35,17 @@ const colorStyle = theme => ({
   },
 });
 
+const SHRINK_LABEL_PROPS = { shrink: true, style: { fontWeight: 600 } };
+
 export const ColorInput = withStyles(colorStyle)(props =>
   React.createElement(TextField, {
+    variant: "outlined",
     ...props,
+    value: props.value || "",
     InputProps: {
-      endAdornment: <div></div>,
+      endAdornment: <div onClick={props.onPickerClick} style={{ backgroundColor: props.value }}></div>,
     },
+    InputLabelProps: SHRINK_LABEL_PROPS
   }),
 );
 
@@ -52,7 +57,6 @@ const inputStyle = theme => ({
   },
 });
 
-const labelProps = { shrink: true, style: { fontWeight: 600 } };
 export const TextInput = withStyles(inputStyle)(props =>
-  React.createElement(TextField, { ...props, variant: "outlined", InputLabelProps: labelProps }),
+  React.createElement(TextField, { ...props, variant: "outlined", value: props.value || "", InputLabelProps: SHRINK_LABEL_PROPS }),
 );
