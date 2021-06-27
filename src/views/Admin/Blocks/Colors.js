@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import map from "lodash/map";
 
 import Box from "@material-ui/core/Box";
@@ -8,7 +8,7 @@ import Popover from "@material-ui/core/Popover";
 import * as MaterialColors from "@material-ui/core/colors";
 import withStyles from "@material-ui/styles/withStyles";
 
-import ResetIcon from "@material-ui/icons/Replay";
+import ResetButton from "../../../components/ResetButton";
 
 import Block from "./Block";
 import { Button, ColorInput } from "../../../components/Forms";
@@ -17,27 +17,27 @@ import useBlock from "../../../hooks/useBlock";
 const Colors = ({ classes }) => {
   const { onChange, onSave, onReset, values } = useBlock("colors");
   const [current, setCurrent] = useState();
-  const [mainColor, setMainColor] = useState(MaterialColors.red);
+  const colorRef = useRef();
 
-  const onPickerClick = useCallback(picker => event => setCurrent({ picker, anchor: event.currentTarget }), []);
-  const onClose = useCallback(() => setCurrent(null), []);
-
-  const onMainColorClick = useCallback(color => () => setMainColor(color), []);
-  const onShadeClick = useCallback(
-    shade => () => {
-      if (!current) return;
-      onChange(current.picker)({ target: shade });
-      setCurrent(null);
+  const onPickerClick = useCallback(
+    picker => event => {
+      setCurrent({ picker, anchor: event.currentTarget });
+      setTimeout(() => colorRef.current.click(), 1);
     },
-    [current],
+    [],
   );
 
   return (
     <Block title="Cores">
+      <input
+        ref={colorRef}
+        type="color"
+        onInput={onChange(current?.picker)}
+        style={{ position: "absolute", visibility: "hidden", left: current?.anchor?.getClientRects()[0].x }}
+      />
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6">Principais</Typography>
-
           <Box pt={2}>
             <ColorInput label="Primária" fullWidth value={values.primary} onChange={onChange("primary")} onPickerClick={onPickerClick("primary")} />
             <ColorInput
@@ -87,9 +87,7 @@ const Colors = ({ classes }) => {
 
         <Grid container item xs={12} justify="flex-end" spacing={1}>
           <Grid item xs={4} sm={3} md={1}>
-            <Button variant="contained" color="default" fullWidth disableElevation onClick={onReset}>
-              <ResetIcon />
-            </Button>
+            <ResetButton onClick={onReset} />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
@@ -98,42 +96,6 @@ const Colors = ({ classes }) => {
           </Grid>
         </Grid>
       </Grid>
-
-      {/* Color picker */}
-      <Popover anchorEl={current?.anchor} onClose={onClose} anchorOrigin={{ vertical: "center", horizontal: "right" }} open={current != null}>
-        <Box p={2} style={{ backgroundColor: "#f7f7f7" }}>
-          <Grid container spacing={2} wrap="nowrap">
-            <Grid item xs={6} style={{ borderRight: "1px solid" }}>
-              <Box display="flex" flexDirection="column">
-                {map(
-                  MaterialColors,
-                  (color, key) =>
-                    key !== "common" && (
-                      <Box
-                        key={key}
-                        className={classes.color}
-                        data-selected={mainColor?.[500] === color[500]}
-                        style={{ backgroundColor: color[500] }}
-                        onClick={onMainColorClick(color)}>
-                        &nbsp;
-                      </Box>
-                    ),
-                )}
-              </Box>
-            </Grid>
-            <Grid item xs={6} style={{ marginLeft: 20 }}>
-              <Box display="flex" flexDirection="column">
-                {/*TODO open slide-to-bottom animation */}
-                {map(mainColor, (shade, key) => (
-                  <Box key={key} className={classes.color} style={{ backgroundColor: shade }} onClick={onShadeClick(shade)}>
-                    &nbsp;
-                  </Box>
-                ))}
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Popover>
     </Block>
   );
 };

@@ -2,29 +2,26 @@ import purple from "@material-ui/core/colors/deepPurple";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
 
-export const primaryColor = { main: "#1F2572", light: "#8E91B7" };
-export const secondaryColor = { main: "#B122CB", light: "#D78FE3" };
-
 const themeConfig = {
   typography: {
     useNextVariants: true,
     h1: { fontWeight: 600 },
     h2: { fontWeight: 600 },
     h3: { fontWeight: 600 },
-    h4: { 
+    h4: {
       fontWeight: 600,
-      fontFamily: ["Arvo", "Arial"].join()
+      fontFamily: ["Arvo", "Arial"].join(),
     },
     h5: { fontWeight: 600 },
 
-    fontFamily: ["Montserrat", "sans-serif"].join()
+    fontFamily: ["Montserrat", "sans-serif"].join(),
   },
   palette: {
-    primary: primaryColor,
-    secondary: secondaryColor,
+    primary: { main: "#1F2572", light: "#8E91B7" },
+    secondary: { main: "#B122CB", light: "#D78FE3" },
     auxiliar: {
       main: "#CDEF77",
-      light: "#E5F6BA"
+      light: "#E5F6BA",
     },
     error: red,
 
@@ -42,18 +39,18 @@ const themeConfig = {
   overrides: {
     MuiButton: {
       root: {
-        padding: '12px',
-        borderRadius: 8
-      }
+        padding: "12px",
+        borderRadius: 8,
+      },
     },
     MuiCardContent: {
       root: {
-        '&:last-child': {
-          paddingBottom: null
-        }
-      }
-    }
-  }
+        "&:last-child": {
+          paddingBottom: null,
+        },
+      },
+    },
+  },
 };
 
 export default themeConfig;

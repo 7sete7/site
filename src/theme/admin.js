@@ -1,5 +1,6 @@
 import blue from "@material-ui/core/colors/blue";
-import grey from "@material-ui/core/colors/grey"
+import grey from "@material-ui/core/colors/grey";
+import green from "@material-ui/core/colors/green";
 
 const themeConfig = {
   typography: {
@@ -10,8 +11,9 @@ const themeConfig = {
   palette: {
     primary: blue,
     secondary: {
-      main: grey[400]
+      main: grey[400],
     },
+    success: green,
   },
   overrides: {
     MuiTab: {

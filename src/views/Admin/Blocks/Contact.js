@@ -6,7 +6,7 @@ import { Button, TextInput } from "../../../components/Forms";
 import Block from "./Block";
 import useBlock from "../../../hooks/useBlock";
 
-import ResetIcon from "@material-ui/icons/Replay";
+import ResetButton from "../../../components/ResetButton";
 
 const Contact = () => {
   const { onChange, onSave, onReset, values } = useBlock("contact");
@@ -31,9 +31,7 @@ const Contact = () => {
         <Grid xs={false} sm={6}></Grid>
         <Grid container item xs={12} justify="flex-end" alignItems="flex-end" spacing={1}>
           <Grid item xs={4} sm={3} md={1}>
-            <Button variant="contained" color="default" fullWidth disableElevation onClick={onReset}>
-              <ResetIcon />
-            </Button>
+            <ResetButton onClick={onReset} />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Button variant="contained" color="primary" fullWidth disableElevation>

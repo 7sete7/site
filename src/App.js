@@ -16,9 +16,9 @@ const NotFound = () => {
   return <div>NotFound</div>;
 };
 
-// const ROUTES = ["/admin"];
-// const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window.location.pathname);
-// const subdomain = hasSubdomain ? /(\/.+?)(\/.+)?$/.exec(window.location.pathname)[1] : undefined;
+const ROUTES = ["/admin"];
+const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window.location.pathname);
+const subdomain = hasSubdomain ? /(\/.+?)(\/.+)?$/.exec(window.location.pathname)?.[1] : undefined;
 
 const theme = createMuiTheme(DefaultTheme);
 const App = () => (
@@ -26,7 +26,7 @@ const App = () => (
     <CssBaseline />
     <div style={{ height: "100vh" }}>
       <Header />
-      <Router basename={undefined}>
+      <Router basename={subdomain}>
         <Switch>
           <Route exact path="/" component={Home} />
           <MuiThemeProvider theme={createMuiTheme(AdminTheme)}>
