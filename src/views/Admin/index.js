@@ -25,8 +25,8 @@ const Admin = () => {
 
         <ColorsBlock />
 
-        <PostsBlock />
-        <PostsBlock />
+        <PostsBlock name="projetos" block="projects" />
+        <PostsBlock name="posts" block="posts" />
 
         <StudiesBlock />
 

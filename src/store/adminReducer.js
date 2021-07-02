@@ -9,6 +9,7 @@ export const admin = createSlice({
       console.log("%cSave dispatched", "color: red; font-size:12pt; font-weight: bold;");
       console.table(payload);
 
+      delete payload.changed;
       state[payload.block] = Object.assign({}, state[payload.block], payload);
     },
     populate(state, { payload }) {

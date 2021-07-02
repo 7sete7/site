@@ -1,17 +1,13 @@
 import React, { useState, useCallback, useRef } from "react";
-import map from "lodash/map";
 
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Popover from "@material-ui/core/Popover";
-import * as MaterialColors from "@material-ui/core/colors";
 import withStyles from "@material-ui/styles/withStyles";
-
-import ResetButton from "../../../components/ResetButton";
 
 import Block from "./Block";
 import { Button, ColorInput } from "../../../components/Forms";
+import ResetButton from "../../../components/ResetButton";
 import useBlock from "../../../hooks/useBlock";
 
 const Colors = ({ classes }) => {
@@ -86,7 +82,7 @@ const Colors = ({ classes }) => {
         </Grid>
 
         <Grid container item xs={12} justify="flex-end" spacing={1}>
-          <Grid item xs={4} sm={3} md={1}>
+          <Grid item xs={5} sm={4} md={3}>
             <ResetButton onClick={onReset} />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>

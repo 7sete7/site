@@ -30,7 +30,7 @@ const Contact = () => {
         </Grid>
         <Grid xs={false} sm={6}></Grid>
         <Grid container item xs={12} justify="flex-end" alignItems="flex-end" spacing={1}>
-          <Grid item xs={4} sm={3} md={1}>
+          <Grid item xs={5} sm={4} md={3}>
             <ResetButton onClick={onReset} />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>

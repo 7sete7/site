@@ -4,19 +4,37 @@ import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
-const Block = ({ title, children }) => (
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const Block = ({ title, children, classes }) => (
   <Paper elevation={0}>
-    <Box p={3} mb={8}>
+    <Box className={classes.box} mb={8}>
       
       <Typography variant="h6" paragraph>
         {title}
       </Typography>
 
-      <Box p={2}>
+      <Box className={classes.content}>
         {children}
       </Box>
     </Box>
   </Paper>
 );
 
-export default Block;
+const styles = theme => ({
+  content: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1)
+    }
+  },
+
+  box: {
+    padding: theme.spacing(3),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1)
+    }
+  },
+})
+
+export default withStyles(styles)(Block);
