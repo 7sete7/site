@@ -27,6 +27,7 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
   const btnColor = useCallback(value => values.imageFill === value ? "contained" : null, [values]);
 
   const onSaveClick = useCallback(() => {
+    //TODO save confirmation
     "function" === typeof onSave && onSave({ id, post: values });
   }, [onSave, values, id]);
 

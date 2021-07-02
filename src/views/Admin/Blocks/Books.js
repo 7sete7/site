@@ -1,21 +1,17 @@
 import React from "react";
+import map from "lodash/map";
 
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import CardHeader from "@material-ui/core/CardHeader";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Button from "@material-ui/core/Button";
 
+import { Button as SaveButton } from "../../../components/Forms";
+import BookCard from "../../../components/Cards/book";
 import Block from "./Block";
-import { Button as SaveButton, TextInput } from "../../../components/Forms";
-import useBlock from "../../../hooks/useBlock";
 
-const Header = () => (
+import useBlock from "../../../hooks/useBlock";
+import useCardList from "../../../hooks/useCardList";
+
+const Header = ({ onAdd }) => (
   <Box>
     <CardHeader
       title="Livros"
@@ -23,7 +19,7 @@ const Header = () => (
       titleTypographyProps={{ variant: "h6" }}
       style={{ padding: 0 }}
       action={
-        <SaveButton variant="contained" color="primary" disableElevation style={{ margin: 10 }}>
+        <SaveButton variant="contained" color="primary" onClick={onAdd} disableElevation style={{ margin: 10 }}>
           Adcionar livro
         </SaveButton>
       }
@@ -33,45 +29,14 @@ const Header = () => (
 
 const Books = () => {
   const { onChange, onSave, values } = useBlock("books");
-  return (
-    <Block title={<Header />}>
-      <Box display="flex">
-        <Card style={{ width: "35%" }}>
-          <CardContent>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <TextInput label="Título" fullWidth />
-              </Grid>
-              <Grid item xs={12}>
-                <TextInput label="Autor" fullWidth />
-              </Grid>
-              <Grid item xs={12}>
-                <TextInput label="Link da imagem" fullWidth />
-              </Grid>
+  const { onCardDelete, onCardSave, onNewCard } = useCardList({ onChange, onSave, values });
 
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox name="reading" color="primary" />}
-                  label={<Typography variant="body2">Lendo atualmente</Typography>}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
-          <CardActions>
-            <Grid container>
-              <Grid item xs={5}>
-                <Button fullWidth variant="text" color="secondary">
-                  Excluir
-                </Button>
-              </Grid>
-              <Grid item xs={7}>
-                <Button fullWidth variant="contained" color="primary" disableElevation>
-                  Salvar
-                </Button>
-              </Grid>
-            </Grid>
-          </CardActions>
-        </Card>
+  return (
+    <Block title={<Header onAdd={onNewCard} />}>
+      <Box display="flex" p={0.8} bgcolor="#eee" overflow="auto">
+        {map(values.data, (book, idx) => (
+          <BookCard key={book.id} id={book.id} {...book} onSave={onCardSave} onDelete={onCardDelete} />
+        ))}
       </Box>
     </Block>
   );
