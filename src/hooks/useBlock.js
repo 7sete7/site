@@ -23,7 +23,10 @@ const useBlock = name => {
     [setValues],
   );
 
-  const onSave = useCallback(() => dispatch(save({ ...values, block: name })), [dispatch, values, name]);
+  const onSave = useCallback(() => {
+    dispatch(save({ ...values, block: name }));
+    initialValue[name] = null;
+  }, [dispatch, values, name]);
 
   const onReset = useCallback(() => setValues(initialValue[name] || {}), [initialValue]);
 

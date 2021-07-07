@@ -3,3 +3,16 @@
 # The site
 
 [Desenho no Figma](https://www.figma.com/file/oYVZx1RfXA9KXoCrTadrJb/Meu-Site?node-id=0%3A1)
+
+------------
+
+## Todo
+
+- **Home**
+  - Load data on enter
+  - Skeleton / Loading state
+  - Books section
+- **Admin**
+  - Save, Reset & Delete confirmation/alert
+  - Skeleton / Loading state
+  - Posts card: Tags, Image & Card preview 

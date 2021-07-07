@@ -22,7 +22,7 @@ const Header = ({ onAdd, name, qtt = 0 }) => (
       style={{ padding: 0 }}
       action={
         <SaveButton onClick={onAdd} variant="contained" color="primary" disableElevation style={{ margin: 10 }}>
-          Novo Projeto
+          Novo {trimEnd(name, "s")}
         </SaveButton>
       }
     />

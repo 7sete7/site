@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import updateAdminData from "../DAL/updateAdminData";
 
 //TODO loading state
 export const admin = createSlice({
@@ -11,6 +12,10 @@ export const admin = createSlice({
 
       delete payload.changed;
       state[payload.block] = Object.assign({}, state[payload.block], payload);
+
+      const data = [state[payload.block]];
+      delete data[0]._id;
+      updateAdminData(data);
     },
     populate(state, { payload }) {
       if (payload != null) return payload;

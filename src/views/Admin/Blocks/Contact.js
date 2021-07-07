@@ -33,7 +33,7 @@ const Contact = () => {
           <Grid item xs={5} sm={4} md={3}>
             <ResetButton onClick={onReset} />
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4} onClick={onSave}>
             <Button variant="contained" color="primary" fullWidth disableElevation>
               Salvar contatos
             </Button>
