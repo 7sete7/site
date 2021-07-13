@@ -9,10 +9,10 @@
 ## Todo
 
 - **Home**
-  - Load data on enter
-  - Skeleton / Loading state
-  - Books section
+  - [x] Load data on enter
+  - [ ] Skeleton / Loading state
+  - [ ] Books section
 - **Admin**
-  - Save, Reset & Delete confirmation/alert
-  - Skeleton / Loading state
-  - Posts card: Tags, Image & Card preview 
+  - [ ] Save, Reset & Delete confirmation/alert
+  - [ ] Skeleton / Loading state
+  - [ ] Posts card: Tags, Image & Card preview 
