@@ -81,14 +81,16 @@ const Colors = ({ classes }) => {
           </Box>
         </Grid>
 
-        <Grid container item xs={12} justify="flex-end" spacing={1}>
-          <Grid item xs={5} sm={4} md={3}>
-            <ResetButton onClick={onReset} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
-              Salvar cores
-            </Button>
+        <Grid item xs={12}>
+          <Grid container spacing={1} justify="flex-end">
+            <Grid item xs={5} sm={4} md={3}>
+              <ResetButton onClick={onReset} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
+                Salvar cores
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

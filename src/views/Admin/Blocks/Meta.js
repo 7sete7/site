@@ -29,14 +29,26 @@ const Meta = () => {
         <Grid item xs={12} sm={8}>
           <TextInput label="Link da foto" fullWidth value={values.pic} onChange={onChange("pic")} />
         </Grid>
-        <Grid container item xs={12} sm={8} justify="flex-end" alignItems="flex-end" spacing={1}>
-          <Grid item xs={6} sm={5} md={4}>
-            <ResetButton onClick={onReset} />
+        <Grid item xs={12} sm={8}>
+          <Grid container spacing={1}>
+            <Grid item xs={12} sm={6}>
+              <TextInput label="Botão auxiliar" fullWidth value={values.btnTitle} onChange={onChange("btnTitle")} />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextInput label="Link" fullWidth value={values.btnLink} onChange={onChange("btnLink")} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
-              Salvar dados
-            </Button>
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Grid container spacing={1} justify="flex-end" alignItems="flex-end">
+            <Grid item xs={6} sm={5} md={4}>
+              <ResetButton onClick={onReset} />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <Button variant="contained" color="primary" fullWidth disableElevation onClick={onSave}>
+                Salvar dados
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

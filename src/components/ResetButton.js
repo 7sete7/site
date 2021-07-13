@@ -14,7 +14,7 @@ const ResetButton = ({ onClick }) => {
   const onReset = useCallback(() => {
     setState(false);
     onClick();
-  });
+  }, [onClick]);
 
   return (
     <Grid container spacing={0}>

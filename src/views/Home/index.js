@@ -1,5 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import map from "lodash/map";
+import replace from "lodash/replace";
+import { useDispatch } from "react-redux";
 
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -23,11 +25,21 @@ import WavyBox from "../../components/WavyBox";
 import withStyles from "@material-ui/core/styles/withStyles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+import fetchData from "../../DAL/fetchAdminData";
+import { populate } from "../../store/homeReducer";
+
 const Home = ({ classes }) => {
-  const { projects, posts } = useSelector(getData);
+  const dispatch = useDispatch();
+
+  const { projects, posts, metadata = {}, contact = {} } = useSelector(getData);
   const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
 
   const CardComponent = useMemo(() => (isXSmall ? CompactCard : LongCard), [isXSmall]);
+
+  useEffect(() => {
+    fetchData().then(data => dispatch(populate(data)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -39,7 +51,7 @@ const Home = ({ classes }) => {
           <Typography id="projetos" variant="h4" paragraph gutterBottom>
             Meus projetos principais
           </Typography>
-          {map(projects, project => (
+          {map(projects?.data, project => (
             <CardComponent key={project.title} {...project} linkName="Ver projeto" />
           ))}
         </Box>
@@ -50,7 +62,7 @@ const Home = ({ classes }) => {
           <Typography id="posts" variant="h4" paragraph gutterBottom>
             Meus posts principais
           </Typography>
-          {map(posts, post => (
+          {map(posts?.data, post => (
             <CardComponent key={post.title} {...post} linkName="Ver post" />
           ))}
         </Box>
@@ -60,10 +72,10 @@ const Home = ({ classes }) => {
           <Box display="flex" flexWrap="wrap">
             <div style={{ flexGrow: 1, paddingBottom: 16 }}>
               <Typography variant="h5" gutterBottom>
-                Eduardo.viva
+                {metadata.logo}
               </Typography>
               <Typography color="secondary">
-                <b>UX / UI / Product Designer</b>
+                <b>{metadata.role}</b>
               </Typography>
             </div>
             <div style={{ flexGrow: 1 }}>
@@ -71,36 +83,44 @@ const Home = ({ classes }) => {
                 <b>Vamos conversar</b>
               </Typography>
               <Box pl={2}>
-                <Box display="flex" alignItems="center" mb={2}>
-                  <Icon className={classes.icon}>
-                    <LinIcon />
-                  </Icon>
-                  <Link href="//linkedin.com/in/edu-viva" target="_blank" color="textPrimary" underline="none">
-                    linkedin.com/in/edu-viva
-                  </Link>
-                </Box>
-                <Box display="flex" alignItems="center" mb={2}>
-                  <Icon className={classes.icon}>
-                    <WhatsIcon />
-                  </Icon>
-                  <Link href="//wa.me/5551999918720" target="_blank" color="textPrimary" underline="none">
-                    (51) 99991-8720
-                  </Link>
-                </Box>
-                <Box display="flex" alignItems="center" mb={2}>
-                  <Icon className={classes.icon}>
-                    <MailIcon />
-                  </Icon>
-                  <Typography color="textPrimary">eduardovivaa@gmail.com</Typography>
-                </Box>
-                <Box display="flex" alignItems="center" mb={2}>
-                  <Icon className={classes.icon}>
-                    <BehanceIcon />
-                  </Icon>
-                  <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">
-                    behance.net/eduviva
-                  </Link>
-                </Box>
+                {contact.linkedin && (
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <Icon className={classes.icon}>
+                      <LinIcon />
+                    </Icon>
+                    <Link href={contact.linkedin} target="_blank" color="textPrimary" underline="none">
+                      {contact.linkedin}
+                    </Link>
+                  </Box>
+                )}
+                {contact.whatsapp && (
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <Icon className={classes.icon}>
+                      <WhatsIcon />
+                    </Icon>
+                    <Link href={replace(contact.whatsapp, /\D/i, '')} target="_blank" color="textPrimary" underline="none">
+                      {contact.whatsapp}
+                    </Link>
+                  </Box>
+                )}
+                {contact.email && (
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <Icon className={classes.icon}>
+                      <MailIcon />
+                    </Icon>
+                    <Typography color="textPrimary">{contact.email}</Typography>
+                  </Box>
+                )}
+                {contact.behance && (
+                  <Box display="flex" alignItems="center" mb={2}>
+                    <Icon className={classes.icon}>
+                      <BehanceIcon />
+                    </Icon>
+                    <Link href={contact.behance} target="_blank" color="textPrimary" underline="none">
+                      {contact.behance}
+                    </Link>
+                  </Box>
+                )}
               </Box>
             </div>
           </Box>

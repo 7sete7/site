@@ -14,7 +14,10 @@ import WhatsIcon from "@material-ui/icons/WhatsApp";
 import BehanceIcon from "./Icons/Behance";
 import MenuIcon from "@material-ui/icons/Menu";
 
-const Header = () => (
+import { connect } from "react-redux";
+import replace from "lodash/replace";
+
+const Header = ({ metadata = {}, contact = {} }) => (
   <AppBar position="static" color="inherit">
     <Toolbar disableGutters={false} style={{ zIndex: 150 }}>
       <Grid container>
@@ -22,14 +25,14 @@ const Header = () => (
         <Hidden smDown>
           <Grid item container md={4} justify="center">
             <Typography variant="h4" color="inherit" noWrap>
-              Eduardo.Viva
+              {metadata.logo}
             </Typography>
           </Grid>
         </Hidden>
         <Hidden mdUp>
           <Grid item container wrap="nowrap" xs={8} alignItems="center">
             <Typography variant="h4" color="inherit" noWrap>
-              E
+              {metadata.logo ? metadata.logo.slice(0, 1) : "E"}
             </Typography>
           </Grid>
         </Hidden>
@@ -48,26 +51,37 @@ const Header = () => (
         <Hidden smDown>
           <Grid item container wrap="nowrap" xs={4} justify="center">
             <Box display="flex" justifyContent="space-evenly" flexGrow="0.4" alignItems="center">
-              <Link href="//linkedin.com/in/edu-viva" target="_blank" color="textPrimary" underline="none">
-                <Icon>
-                  <LinIcon />
-                </Icon>
-              </Link>
-              <Link href="//wa.me/5551999918720" target="_blank" color="textPrimary" underline="none">
-                <Icon>
-                  <WhatsIcon />
-                </Icon>
-              </Link>
-              <Link href="//github.com/EduViva" target="_blank" color="textPrimary" underline="none">
-                <Icon>
-                  <GitIcon />
-                </Icon>
-              </Link>
-              <Link href="//behance.net/eduviva" target="_blank" color="textPrimary" underline="none">
-                <Icon>
-                  <BehanceIcon />
-                </Icon>
-              </Link>
+              {contact.linkedin && (
+                <Link href={contact.linkedin} target="_blank" color="textPrimary" underline="none">
+                  <Icon>
+                    <LinIcon />
+                  </Icon>
+                </Link>
+              )}
+
+              {contact.whatsapp && (
+                <Link href={replace(contact.whatsapp, /\D/i, '')} target="_blank" color="textPrimary" underline="none">
+                  <Icon>
+                    <WhatsIcon />
+                  </Icon>
+                </Link>
+              )}
+
+              {contact.github && (
+                <Link href={contact.github} target="_blank" color="textPrimary" underline="none">
+                  <Icon>
+                    <GitIcon />
+                  </Icon>
+                </Link>
+              )}
+
+              {contact.behance && (
+                <Link href={contact.behance} target="_blank" color="textPrimary" underline="none">
+                  <Icon>
+                    <BehanceIcon />
+                  </Icon>
+                </Link>
+              )}
             </Box>
           </Grid>
         </Hidden>
@@ -85,4 +99,4 @@ const Header = () => (
   </AppBar>
 );
 
-export default Header;
+export default connect(state => ({ metadata: state.home?.metadata, contact: state.home?.contact }))(Header);

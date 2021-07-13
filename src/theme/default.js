@@ -1,6 +1,7 @@
 import purple from "@material-ui/core/colors/deepPurple";
 import red from "@material-ui/core/colors/red";
 import grey from "@material-ui/core/colors/grey";
+import start from "lodash/startCase";
 
 const themeConfig = {
   typography: {
@@ -51,6 +52,24 @@ const themeConfig = {
       },
     },
   },
+
+  copyPaletteWith(colors = {}) {
+    const copy = { ...this };
+
+    const col = ["primary", "secondary", "auxiliar"];
+    const palette = col.reduce((acc, itm) => ({ 
+      ...acc, 
+      [itm]: Object.assign(
+        {},
+        copy.palette[itm], 
+        colors[itm] && { main: colors[itm] }, 
+        colors[`helper${start(itm)}`] && { light: colors[`helper${start(itm)}`] 
+      }) 
+    }), {});
+
+    copy.palette = palette;
+    return copy;
+  }
 };
 
 export default themeConfig;

@@ -3,33 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const home = createSlice({
   name: "home",
   initialState: {
-    projects: [
-      {
-        image:
-          "https://vignette.wikia.nocookie.net/disney/images/4/41/DoofenshmirtzFull.jpg/revision/latest?cb=20190819173522",
-        imageFill: "cover", // cover | contain
-        title: "Estudo de caso Doof",
-        description: "Identificando oportunidades para capturar Perry o ornitorrinco",
-        tags: ["Figma", "Leo"],
-        link: "#",
-      },
-    ],
-
-    posts: [
-      {
-        image:
-          "https://vignette.wikia.nocookie.net/disney/images/4/41/DoofenshmirtzFull.jpg/revision/latest?cb=20190819173522",
-        imageFill: "cover", // cover | contain
-        title: "Estudo de caso Doof",
-        description: "Identificando oportunidades para capturar Perry o ornitorrinco",
-        tags: ["Figma"],
-        link: "#",
-      },
-    ],
+    loading: true,
   },
-  reducers: {},
+  reducers: {
+    populate(state, { payload }) {
+      if (payload != null) return payload;
+    },
+  },
 });
 
-export const getData = state => ({ projects: state.home.projects, posts: state.home.posts });
+export const getData = ({ home }) => home;
 
+export const { populate } = home.actions;
 export default home.reducer;

@@ -14,12 +14,12 @@ const useBlock = name => {
       initialValue[name] = data;
       setValues(data);
     }
-  }, [data]);
+  }, [data, name]);
 
   const onChange = useCallback(
     field =>
-      ({ target }) =>
-        setValues(v => ({ ...v, [field]: target?.value || target })),
+      ({ target, value }) =>
+        setValues(v => ({ ...v, [field]: value !== undefined ? value : target?.value })),
     [setValues],
   );
 
@@ -28,7 +28,7 @@ const useBlock = name => {
     initialValue[name] = null;
   }, [dispatch, values, name]);
 
-  const onReset = useCallback(() => setValues(initialValue[name] || {}), [initialValue]);
+  const onReset = useCallback(() => setValues(initialValue[name] || {}), [name]);
 
   return { values, onChange, onSave, onReset };
 };
