@@ -11,7 +11,7 @@
 - **Home**
   - [x] Load data on enter
   - [ ] Skeleton / Loading state
-  - [ ] Books section
+  - [x] Books section
 - **Admin**
   - [ ] Save, Reset & Delete confirmation/alert
   - [ ] Skeleton / Loading state

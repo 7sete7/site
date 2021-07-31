@@ -21,6 +21,7 @@ import Hero from "../../components/Hero";
 import LongCard from "../../components/LongCard";
 import CompactCard from "../../components/CompactCard";
 import WavyBox from "../../components/WavyBox";
+import BookShelf from "../../components/BookShelf";
 
 import withStyles from "@material-ui/core/styles/withStyles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -31,7 +32,7 @@ import { populate } from "../../store/homeReducer";
 const Home = ({ classes }) => {
   const dispatch = useDispatch();
 
-  const { projects, posts, metadata = {}, contact = {} } = useSelector(getData);
+  const { projects, posts, metadata = {}, contact = {}, books } = useSelector(getData);
   const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
 
   const CardComponent = useMemo(() => (isXSmall ? CompactCard : LongCard), [isXSmall]);
@@ -67,6 +68,16 @@ const Home = ({ classes }) => {
           ))}
         </Box>
       </Container>
+      {books?.data?.length > 0 ? (
+        <Box id="estante" mt={5}>
+          <Container maxWidth="lg">
+            <Typography id="projetos" variant="h4" paragraph gutterBottom>
+              Minha estante de livros
+            </Typography>
+            <BookShelf />
+          </Container>
+        </Box>
+      ) : null}
       <Box id="contatos" mt={13} py={3} bgcolor="#EEF0FF">
         <Container maxWidth="lg">
           <Box display="flex" flexWrap="wrap">
@@ -98,7 +109,7 @@ const Home = ({ classes }) => {
                     <Icon className={classes.icon}>
                       <WhatsIcon />
                     </Icon>
-                    <Link href={replace(contact.whatsapp, /\D/i, '')} target="_blank" color="textPrimary" underline="none">
+                    <Link href={replace(contact.whatsapp, /\D/i, "")} target="_blank" color="textPrimary" underline="none">
                       {contact.whatsapp}
                     </Link>
                   </Box>
