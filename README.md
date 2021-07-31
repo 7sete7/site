@@ -10,7 +10,7 @@
 
 - **Home**
   - [x] Load data on enter
-  - [ ] Skeleton / Loading state
+  - [x] Skeleton / Loading state
   - [x] Books section
 - **Admin**
   - [ ] Save, Reset & Delete confirmation/alert

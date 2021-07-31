@@ -16,7 +16,7 @@ const BookShelf = ({ books, classes }) =>
     <Grid container spacing={3}>
       {map(books, ({ id, author, image, title, current }, index) => (
         <Grid item xs={12} sm={4} key={id}>
-          <Card className={`${classes.card} ${index % 2 != 0 && classes.cardEven}`}>
+          <Card className={`${classes.card} ${index % 2 !== 0 && classes.cardEven}`}>
             {current ? (
               <Box position="absolute" className={classes.tag} bgcolor="auxiliar.main">
                 Lendo

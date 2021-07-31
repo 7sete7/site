@@ -4,39 +4,57 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import Skeleton from "@material-ui/lab/Skeleton";
+import Slide from "@material-ui/core/Slide";
 
 import ExternalIcon from "@material-ui/icons/LaunchRounded";
 import withStyles from "@material-ui/core/styles/withStyles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { getData } from "../store/homeReducer";
 import { useSelector } from "react-redux";
 
 const Hero = ({ classes }) => {
-  const { metadata = {} } = useSelector(getData);
+  const { metadata = {}, loading } = useSelector(getData);
+  const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
   const ref = useRef();
 
   return (
     <Box display="flex">
       <Box py={3} className={classes.container}>
-        <Typography color="secondary" gutterBottom>
-          <b>{metadata.role}</b>
-        </Typography>
-        <Typography color="textPrimary" variant="h3" style={{ marginBottom: -15 }}>
-          Olá
-        </Typography>
-        <Typography color="textPrimary" variant="h3" style={{ fontWeight: 300 }} paragraph>
-          meu nome é{" "}
-          <Typography color="primary" variant="h3" component="span">
-            <b>{metadata.name}</b>
-          </Typography>
-        </Typography>
-        <Typography color="textPrimary" style={{ marginTop: 32 }} paragraph>
-          <div dangerouslySetInnerHTML={{ __html: metadata.description }} style={{ display: "contents" }} />
-        </Typography>
+        {loading && (
+          <>
+            <Skeleton variant="text" width={150} animation="wave" />
+            <Skeleton variant="text" width={300} animation="wave" />
+            <br />
+            <Skeleton variant="rect" width={500} height={100} style={{ maxWidth: "87vw" }} animation="wave" />
+            <br />
+          </>
+        )}
+
+        <Slide direction="right" in={!loading} mountOnEnter unmountOnExit>
+          <div>
+            <Typography color="secondary" gutterBottom>
+              <b>{metadata.role}</b>
+            </Typography>
+            <Typography color="textPrimary" variant="h3" style={{ marginBottom: -15 }}>
+              Olá
+            </Typography>
+            <Typography color="textPrimary" variant="h3" style={{ fontWeight: 300 }} paragraph>
+              meu nome é{" "}
+              <Typography color="primary" variant="h3" component="span">
+                <b>{metadata.name}</b>
+              </Typography>
+            </Typography>
+            <Typography color="textPrimary" style={{ marginTop: 32 }} paragraph>
+              <div dangerouslySetInnerHTML={{ __html: metadata.description }} style={{ display: "contents" }} />
+            </Typography>
+          </div>
+        </Slide>
 
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4}>
-            <Button color="secondary" variant="contained" fullWidth disableElevation>
+            <Button color="secondary" variant="contained" fullWidth disableElevation style={{ minWidth: 200 }}>
               <Typography variant="body2">
                 <b>Meus projetos</b>
               </Typography>
