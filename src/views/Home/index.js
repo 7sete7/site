@@ -111,12 +111,7 @@ const Home = ({ classes }) => {
                   <b>Vamos conversar</b>
                 </Typography>
                 <Box pl={2}>
-                  {loading &&
-                    map(Array(5).fill(0), (_, i) => (
-                      <Box display="flex" alignItems="center" mb={2}>
-                        <Skeleton variant="text" width={250} height={30} animation="wave" />
-                      </Box>
-                    ))}
+                  {loading && map(Array(5).fill(0), (_, i) => <Skeleton key={i} variant="text" width={250} height={30} animation="wave" />)}
                   {contact.linkedin && (
                     <Box display="flex" alignItems="center" mb={2}>
                       <Icon className={classes.icon}>

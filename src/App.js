@@ -11,12 +11,13 @@ import AdminTheme from "./theme/admin";
 
 import Home from "./views/Home";
 import Admin from "./views/Admin";
+import Login from "./views/Login";
 
 const NotFound = () => {
   return <div>NotFound</div>;
 };
 
-const ROUTES = ["/admin"];
+const ROUTES = ["/admin", "/admin/login"];
 const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window.location.pathname);
 const subdomain = hasSubdomain ? /(\/.+?)(\/.+)?$/.exec(window.location.pathname)?.[1] : undefined;
 
@@ -40,6 +41,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <MuiThemeProvider theme={createTheme(AdminTheme)}>
               <Route exact path="/admin" component={Admin} />
+              <Route exact path="/admin/login" component={Login} />
             </MuiThemeProvider>
             <Route component={NotFound} />
           </Switch>

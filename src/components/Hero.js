@@ -9,14 +9,12 @@ import Slide from "@material-ui/core/Slide";
 
 import ExternalIcon from "@material-ui/icons/LaunchRounded";
 import withStyles from "@material-ui/core/styles/withStyles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import { getData } from "../store/homeReducer";
 import { useSelector } from "react-redux";
 
 const Hero = ({ classes }) => {
   const { metadata = {}, loading } = useSelector(getData);
-  const isXSmall = useMediaQuery(theme => theme.breakpoints.down("xs"));
   const ref = useRef();
 
   return (
@@ -140,7 +138,7 @@ const Image = withStyles(style)(({ renderRef, classes, url }) => {
       <img src={url} alt="" className={classes.image} />
     </Box>
   );
-  return renderRef && renderRef.current ? ReactDOM.createPortal(<Boxe />, renderRef.current) : <Boxe />;
+  return renderRef?.current ? ReactDOM.createPortal(<Boxe />, renderRef.current) : <Boxe />;
 });
 
 export default withStyles(style)(Hero);
