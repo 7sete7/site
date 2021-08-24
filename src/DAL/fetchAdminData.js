@@ -1,9 +1,8 @@
-import axios from "axios";
+import api from "./api";
 
 const fetchAdminData = async () => {
   try {
-    const CLIENT_NAME = "Edu"; //TODO use enviroment variables, in the host as well
-    const { data } = await axios.get(`https://leo_viva.npkn.net/connection/${CLIENT_NAME}`);
+    const { data } = await api.get("/connection/CLIENT");
 
     return data;
   } catch(e) {

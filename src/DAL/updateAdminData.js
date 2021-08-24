@@ -1,9 +1,8 @@
-import axios from "axios";
+import api from "./api";
 
 const updateAdminData = async payload => {
   try {
-    const CLIENT_NAME = "Edu"; //TODO use enviroment variables, in the host as well
-    const { data } = await axios.post(`https://leo_viva.npkn.net/update/${CLIENT_NAME}`, payload);
+    const { data } = await api.post("/update/CLIENT", payload);
 
     return data;
   } catch(e) {
