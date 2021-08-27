@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -9,9 +9,13 @@ import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 
 import { TextInput, Button } from "../../components/Forms";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logged, populate } from "../../store/adminReducer";
 
 import withStyles from "@material-ui/styles/withStyles";
 import login from "../../DAL/login";
+import authInfo from "../../DAL/loginInfo";
+import fetchAdminData from "../../DAL/fetchAdminData";
 
 const Accordion = withStyles({
   root: {
@@ -53,6 +57,9 @@ const Login = () => {
   const [values, setValues] = useState({ email: "", pass: "" });
   const [status, setStatus] = useState();
 
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
+
   const onExpand = useCallback(() => {
     setExpanded(current => (current === "login" ? "password" : "login"));
     setStatus(null);
@@ -80,6 +87,21 @@ const Login = () => {
     },
     [values],
   );
+
+  useEffect(() => {
+    if (user != null) window.location.pathname = window.location.pathname.replace("/login", "");
+
+    authInfo()
+      .then(user => {
+        if (user != null) {
+          dispatch(logged(user));
+          window.location.pathname = window.location.pathname.replace("/login", "");
+        }
+      });
+    
+
+    fetchAdminData().then(data => dispatch(populate(data)));
+  }, [dispatch, dispatch]);
 
   return (
     <Box width={1} height={1} display="flex" justifyContent="center" alignItems="center" bg="#eee">

@@ -18,13 +18,20 @@ export const admin = createSlice({
       updateAdminData(data);
     },
     populate(state, { payload }) {
-      if (payload != null) return payload;
+      if (payload != null) {
+        payload.user = state.user;
+        return payload;
+      }
+    },
+    logged(state, { payload }) {
+      state["user"] = payload;
     }
   },
 });
 
-export const getBlockData = block => ({ admin }) => admin[block];
+export const getBlockData = block => ({ admin }) => admin?.[block];
 export const getData = ({ admin }) => admin;
+export const getUser = ({ admin }) => admin["user"];
 
-export const { save, populate } = admin.actions;
+export const { save, populate, logged } = admin.actions;
 export default admin.reducer;
