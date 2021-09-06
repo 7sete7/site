@@ -92,16 +92,16 @@ const Login = () => {
     if (user != null) window.location.pathname = window.location.pathname.replace("/login", "");
 
     authInfo()
-      .then(user => {
-        if (user != null) {
-          dispatch(logged(user));
+      .then(usr => {
+        if (usr != null) {
+          dispatch(logged(usr));
           window.location.pathname = window.location.pathname.replace("/login", "");
         }
       });
     
 
     fetchAdminData().then(data => dispatch(populate(data)));
-  }, [dispatch, dispatch]);
+  }, [dispatch]);
 
   return (
     <Box width={1} height={1} display="flex" justifyContent="center" alignItems="center" bg="#eee">

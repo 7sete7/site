@@ -83,7 +83,7 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
                       <TextInput label="Link da imagem" fullWidth compact value={values.image} onChange={onChange("image")} />
                     </Grid>
                     <Grid item xs={4}>
-                      <Box width="100%" height="100%" border="1px solid #000">
+                      <Box width="100%" height="100%" border="1px solid #000" backgroundImage={values.image ? `url(${values.image})` : null}>
                         &nbsp;
                       </Box>
                     </Grid>
@@ -94,6 +94,17 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
                   <Grid container spacing={1}>
                     <Grid item xs={12}>
                       <TextInput label="Link do card" fullWidth compact value={values.link} onChange={onChange("link")} />
+                    </Grid>
+                  </Grid>
+                )}
+
+                {isTabActive("tag") && (
+                  <Grid container spacing={1}>
+                    <Grid item xs={12}>
+
+                    </Grid>
+                    <Grid item xs={12}>
+                      
                     </Grid>
                   </Grid>
                 )}
