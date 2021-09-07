@@ -1,8 +1,11 @@
 import React, { useMemo } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getData } from "./store/homeReducer";
+import { getSnack, closeSnack } from "./store/adminReducer";
 
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
@@ -22,7 +25,9 @@ const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window
 const subdomain = hasSubdomain ? /(\/.+?)(\/.+)?$/.exec(window.location.pathname)?.[1] : undefined;
 
 const App = () => {
+  const dispatch = useDispatch();
   const { colors } = useSelector(getData);
+  const snack = useSelector(getSnack);
 
   // Merge incoming colors (from admin) with default palette
   const theme = useMemo(() => {
@@ -47,6 +52,14 @@ const App = () => {
           </Switch>
         </Router>
       </div>
+
+      <Snackbar
+        open={snack?.open}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        autoHideDuration={3e3}
+        onClose={() => dispatch(closeSnack())}>
+        <Alert severity={snack?.type}>{snack?.message}</Alert>
+      </Snackbar>
     </MuiThemeProvider>
   );
 };

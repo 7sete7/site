@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import updateAdminData from "../DAL/updateAdminData";
 
-//TODO loading state
 export const admin = createSlice({
   name: "admin",
   initialState: {},
@@ -25,6 +24,16 @@ export const admin = createSlice({
     },
     logged(state, { payload }) {
       state["user"] = payload;
+    },
+    openSnack(state, { payload }) {
+      state["snack"] = {
+        open: true,
+        message: payload.msg,
+        type: payload.type
+      }
+    },
+    closeSnack(state) {
+      state["snack"].open = false;
     }
   },
 });
@@ -32,6 +41,7 @@ export const admin = createSlice({
 export const getBlockData = block => ({ admin }) => admin?.[block];
 export const getData = ({ admin }) => admin;
 export const getUser = ({ admin }) => admin["user"];
+export const getSnack = ({ admin }) => admin["snack"];
 
-export const { save, populate, logged } = admin.actions;
+export const { save, populate, logged, openSnack, closeSnack } = admin.actions;
 export default admin.reducer;

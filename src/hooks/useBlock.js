@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { save, getBlockData } from "../store/adminReducer";
+import { save, getBlockData, openSnack } from "../store/adminReducer";
 
 const initialValue = {};
 const useBlock = name => {
@@ -26,6 +26,8 @@ const useBlock = name => {
   const onSave = useCallback(() => {
     dispatch(save({ ...values, block: name }));
     initialValue[name] = null;
+
+    dispatch(openSnack({ msg: "Bloco salvo", type: "success" }));
   }, [dispatch, values, name]);
 
   const onReset = useCallback(() => setValues(initialValue[name] || {}), [name]);

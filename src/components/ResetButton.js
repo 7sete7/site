@@ -1,4 +1,6 @@
 import React, { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openSnack } from "../store/adminReducer";
 
 import Grid from "@material-ui/core/Grid";
 import Slide from "@material-ui/core/Grow";
@@ -9,11 +11,13 @@ import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
 const ResetButton = ({ onClick }) => {
+  const dispatch = useDispatch();
   const [state, setState] = useState(false);
 
   const onReset = useCallback(() => {
     setState(false);
     onClick();
+    dispatch(openSnack({ msg: "Valores do bloco redefinidos", type: "info" }));
   }, [onClick]);
 
   return (

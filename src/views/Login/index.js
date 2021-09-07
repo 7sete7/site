@@ -10,7 +10,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 
 import { TextInput, Button } from "../../components/Forms";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, logged, populate } from "../../store/adminReducer";
+import { getUser, logged, populate, openSnack } from "../../store/adminReducer";
 
 import withStyles from "@material-ui/styles/withStyles";
 import login from "../../DAL/login";
@@ -95,12 +95,13 @@ const Login = () => {
 
     recover(values)
       .then(() => {
-        alert("Siga as instruções enviadas ao seu email.");
         setStatus(null);
+        dispatch(openSnack({ msg: "Siga as instruções enviadas ao seu email", type: "success" }));
       })
       .catch(() => {
         alert("Email não encontrado.");
         setStatus("error");
+        dispatch(openSnack({ msg: "Email não encontrado", type: "error" }));
       });
   });
 
