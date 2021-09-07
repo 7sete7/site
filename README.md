@@ -13,6 +13,6 @@
   - [x] Skeleton / Loading state
   - [x] Books section
 - **Admin**
-  - [ ] Save, Reset & Delete confirmation/alert
-  - [ ] Skeleton / Loading state
+  - [x] Save, Reset & Delete confirmation/alert
+  - [x] Skeleton / Loading state
   - [ ] Posts card: Tags, Image & Card preview 

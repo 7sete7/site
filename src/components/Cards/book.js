@@ -18,7 +18,6 @@ const BookCard = ({ classes, id, onSave, onDelete, ...props }) => {
   const onCheck = useCallback(field => ({ target }) => setValues(v => ({ ...v, [field]: target.checked })), []);
 
   const onSaveClick = useCallback(() => {
-    //TODO save animation
     "function" === typeof onSave && onSave({ id, post: values });
   }, [onSave, values, id]);
 

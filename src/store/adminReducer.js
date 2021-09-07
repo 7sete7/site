@@ -3,7 +3,9 @@ import updateAdminData from "../DAL/updateAdminData";
 
 export const admin = createSlice({
   name: "admin",
-  initialState: {},
+  initialState: {
+    loading: true
+  },
   reducers: {
     save(state, { payload }) {
       console.log("%cSave dispatched", "color: red; font-size:12pt; font-weight: bold;");
