@@ -14,6 +14,7 @@ import { getUser, logged, populate } from "../../store/adminReducer";
 
 import withStyles from "@material-ui/styles/withStyles";
 import login from "../../DAL/login";
+import recover from "../../DAL/recover";
 import authInfo from "../../DAL/loginInfo";
 import fetchAdminData from "../../DAL/fetchAdminData";
 
@@ -88,17 +89,30 @@ const Login = () => {
     [values],
   );
 
+  const onRecoverPassword = useCallback(event => {
+    event.preventDefault();
+    setStatus("loading");
+
+    recover(values)
+      .then(() => {
+        alert("Siga as instruções enviadas ao seu email.");
+        setStatus(null);
+      })
+      .catch(() => {
+        alert("Email não encontrado.");
+        setStatus("error");
+      });
+  });
+
   useEffect(() => {
     if (user != null) window.location.pathname = window.location.pathname.replace("/login", "");
 
-    authInfo()
-      .then(usr => {
-        if (usr != null) {
-          dispatch(logged(usr));
-          window.location.pathname = window.location.pathname.replace("/login", "");
-        }
-      });
-    
+    authInfo().then(usr => {
+      if (usr != null) {
+        dispatch(logged(usr));
+        window.location.pathname = window.location.pathname.replace("/login", "");
+      }
+    });
 
     fetchAdminData().then(data => dispatch(populate(data)));
   }, [dispatch]);
@@ -147,24 +161,26 @@ const Login = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Box py={3} width={1}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} style={{ textAlign: "center", marginBottom: 15 }}>
-                  <Typography variant="h5">Recuperar senha</Typography>
-                  <Typography variant="body2">
-                    Entre o email cadastrado na sua conta. Se ele existir, enviaremos um email com a sua nova senha.
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextInput label="Email" fullWidth value={values.email} onChange={onChange("email")} />
-                </Grid>
-                <Grid container item xs={12}>
-                  <Grid item xs={12} sm={6} md={4} style={{ marginLeft: "auto" }}>
-                    <Button color="primary" variant="contained" disabled={status === "loading"} disableElevation fullWidth>
-                      Enviar
-                    </Button>
+              <form onSubmit={onRecoverPassword}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} style={{ textAlign: "center", marginBottom: 15 }}>
+                    <Typography variant="h5">Recuperar senha</Typography>
+                    <Typography variant="body2">
+                      Entre o email cadastrado na sua conta. Se ele existir, enviaremos um email com a sua nova senha.
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextInput label="Email" fullWidth value={values.email} onChange={onChange("email")} />
+                  </Grid>
+                  <Grid container item xs={12}>
+                    <Grid item xs={12} sm={6} md={4} style={{ marginLeft: "auto" }}>
+                      <Button type="submit" color="primary" variant="contained" disabled={status === "loading"} disableElevation fullWidth>
+                        Enviar
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
+              </form>
             </Box>
           </AccordionDetails>
         </Accordion>
