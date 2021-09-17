@@ -15,6 +15,7 @@ import LinkIcon from "@material-ui/icons/Link";
 import TagIcon from "@material-ui/icons/LocalOffer";
 
 import { TextInput } from "../Forms";
+import TagInput from "../TagInput";
 
 const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
   const [tab, setTab] = useState("preview");
@@ -101,11 +102,9 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
                 {isTabActive("tag") && (
                   <Grid container spacing={1}>
                     <Grid item xs={12}>
-
+                      <TagInput initialTags={values.tags} onChange={tags => setValues(v => ({ ...v, tags }))} />
                     </Grid>
-                    <Grid item xs={12}>
-                      
-                    </Grid>
+                    <Grid item xs={12}></Grid>
                   </Grid>
                 )}
               </Box>

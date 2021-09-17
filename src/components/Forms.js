@@ -52,7 +52,7 @@ export const ColorInput = withStyles(colorStyle)(props =>
 const inputStyle = theme => ({
   root: {
     "& input": {
-      padding: ({ compact }) => compact ? 10 : 14,
+      padding: ({ compact, xs }) => compact ? 10 : xs ? 7 : 14,
     },
   },
 });

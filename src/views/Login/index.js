@@ -103,7 +103,7 @@ const Login = () => {
         setStatus("error");
         dispatch(openSnack({ msg: "Email não encontrado", type: "error" }));
       });
-  });
+  }, [values]);
 
   useEffect(() => {
     if (user != null) window.location.pathname = window.location.pathname.replace("/login", "");

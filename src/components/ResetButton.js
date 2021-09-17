@@ -18,7 +18,7 @@ const ResetButton = ({ onClick }) => {
     setState(false);
     onClick();
     dispatch(openSnack({ msg: "Valores do bloco redefinidos", type: "info" }));
-  }, [onClick]);
+  }, [onClick, dispatch]);
 
   return (
     <Grid container spacing={0}>
