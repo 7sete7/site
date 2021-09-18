@@ -103,6 +103,7 @@ const Login = () => {
         setStatus("error");
         dispatch(openSnack({ msg: "Email não encontrado", type: "error" }));
       });
+      //eslint-disable-next-line
   }, [values]);
 
   useEffect(() => {
@@ -116,6 +117,7 @@ const Login = () => {
     });
 
     fetchAdminData().then(data => dispatch(populate(data)));
+    //eslint-disable-next-line
   }, [dispatch]);
 
   return (

@@ -25,6 +25,7 @@ const Admin = () => {
     }
 
     if (data == null) fetchAdminData().then(data => dispatch(populate(data)));
+    //eslint-disable-next-line
   }, [dispatch]);
 
   return (

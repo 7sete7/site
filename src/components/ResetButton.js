@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { openSnack } from "../store/adminReducer";
 
 import Grid from "@material-ui/core/Grid";
-import Slide from "@material-ui/core/Grow";
 import { Button } from "./Forms";
 
 import ResetIcon from "@material-ui/icons/Replay";
@@ -18,7 +17,7 @@ const ResetButton = ({ onClick, action: Action, msg = "Valores do bloco redefini
     setState(false);
     "function" === typeof onClick && onClick();
     dispatch(openSnack({ msg, type: "info" }));
-  }, [onClick, dispatch]);
+  }, [onClick, dispatch, msg]);
 
   return (
     <Grid container spacing={0}>
