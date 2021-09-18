@@ -9,16 +9,17 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import withStyles from "@material-ui/styles/withStyles";
 
-import PreviewIcon from "@material-ui/icons/Visibility";
 import ImageIcon from "@material-ui/icons/Image";
 import LinkIcon from "@material-ui/icons/Link";
 import TagIcon from "@material-ui/icons/LocalOffer";
+import BlockIcon from "@material-ui/icons/Block";
 
 import { TextInput } from "../Forms";
 import TagInput from "../TagInput";
+import ResetButton from "../ResetButton";
 
 const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
-  const [tab, setTab] = useState("preview");
+  const [tab, setTab] = useState("image");
   const onTabChange = useCallback(newTab => () => setTab(newTab), []);
   const isTabActive = useCallback(value => tab === value, [tab]);
   const tabColor = useCallback(value => (isTabActive(value) ? "primary" : "secondary"), [isTabActive]);
@@ -27,13 +28,16 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
   const onChange = useCallback(field => ({ target }) => setValues(v => ({ ...v, [field]: target.value })), []);
   const btnColor = useCallback(value => values.imageFill === value ? "contained" : null, [values]);
 
+  const isUrl = useCallback(
+    str => /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g.test(str),
+    [],
+  );
+
   const onSaveClick = useCallback(() => {
-    //TODO save confirmation
     "function" === typeof onSave && onSave({ id, post: values });
   }, [onSave, values, id]);
 
   const onDeleteClick = useCallback(() => {
-    //TODO delete confirmation
     "function" === typeof onDelete && onDelete({ id });
   }, [onDelete, id]);
 
@@ -60,9 +64,6 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
           <Grid container spacing={0}>
             <Grid item xs={12}>
               <ButtonGroup variant="text" color="secondary" fullWidth>
-                <Button variant="text" color={tabColor("preview")} onClick={onTabChange("preview")}>
-                  <PreviewIcon />
-                </Button>
                 <Button variant="text" color={tabColor("image")} onClick={onTabChange("image")}>
                   <ImageIcon />
                 </Button>
@@ -76,16 +77,18 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
             </Grid>
             <Grid item xs={12}>
               <Box p={2} pt={4}>
-                {isTabActive("preview") && <div>[@TODO]</div>}
-
                 {isTabActive("image") && (
                   <Grid container spacing={1}>
                     <Grid item xs={8}>
                       <TextInput label="Link da imagem" fullWidth compact value={values.image} onChange={onChange("image")} />
                     </Grid>
                     <Grid item xs={4}>
-                      <Box width="100%" height="100%" border="1px solid #000" backgroundImage={values.image ? `url(${values.image})` : null}>
-                        &nbsp;
+                      <Box
+                        width="100%"
+                        height="100%"
+                        style={{ backgroundImage: values.image ? `url(${values.image})` : null }}
+                        className={classes.cardImage}>
+                        {values.image && isUrl(values.image) ? " " : <BlockIcon />}
                       </Box>
                     </Grid>
                   </Grid>
@@ -124,11 +127,17 @@ const PostCard = ({ classes, id, onSave, onDelete, ...props }) => {
         </Grid>
       </CardContent>
       <CardActions>
-        <Grid container>
+        <Grid container spacing={1}>
           <Grid item xs={5}>
-            <Button fullWidth variant="text" color="secondary" onClick={onDeleteClick}>
-              Excluir
-            </Button>
+            <ResetButton
+              onClick={onDeleteClick}
+              msg="Card excluído"
+              action={props => (
+                <Button {...props} fullWidth variant="text" color="secondary">
+                  Excluir
+                </Button>
+              )}
+            />
           </Grid>
           <Grid item xs={7}>
             <Button fullWidth variant="contained" color="primary" disableElevation onClick={onSaveClick}>
@@ -147,6 +156,12 @@ const styles = theme => ({
     width: "35%",
     marginRight: theme.spacing(1),
   },
+  cardImage: {
+    textAlign: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+  }
 });
 
 export default withStyles(styles)(PostCard);

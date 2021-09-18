@@ -8,6 +8,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 
 import { TextInput } from "../Forms";
+import ResetButton from "../ResetButton";
 import withStyles from "@material-ui/styles/withStyles";
 
 const StudyCard = ({ classes, id, onSave, onDelete, ...props }) => {
@@ -16,12 +17,10 @@ const StudyCard = ({ classes, id, onSave, onDelete, ...props }) => {
   const btnColor = useCallback(value => (values.type === value ? "contained" : null), [values]);
 
   const onSaveClick = useCallback(() => {
-    //TODO save animation
     "function" === typeof onSave && onSave({ id, post: values });
   }, [onSave, values, id]);
 
   const onDeleteClick = useCallback(() => {
-    //TODO delete confirmation
     "function" === typeof onDelete && onDelete({ id });
   }, [onDelete, id]);
 
@@ -60,9 +59,15 @@ const StudyCard = ({ classes, id, onSave, onDelete, ...props }) => {
       <CardActions>
         <Grid container>
           <Grid item xs={5}>
-            <Button fullWidth variant="text" color="secondary" onClick={onDeleteClick}>
-              Excluir
-            </Button>
+            <ResetButton
+              onClick={onDeleteClick}
+              msg="Card excluído"
+              action={props => (
+                <Button {...props} fullWidth variant="text" color="secondary">
+                  Excluir
+                </Button>
+              )}
+            />
           </Grid>
           <Grid item xs={7}>
             <Button fullWidth variant="contained" color="primary" disableElevation onClick={onSaveClick}>

@@ -15,4 +15,4 @@
 - **Admin**
   - [x] Save, Reset & Delete confirmation/alert
   - [x] Skeleton / Loading state
-  - [ ] Posts card: Tags, Image & Card preview 
+  - [x] Posts card: Tags, Image & Card preview 

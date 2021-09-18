@@ -10,33 +10,34 @@ import ResetIcon from "@material-ui/icons/Replay";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 
-const ResetButton = ({ onClick }) => {
+const ResetButton = ({ onClick, action: Action, msg = "Valores do bloco redefinidos" }) => {
   const dispatch = useDispatch();
   const [state, setState] = useState(false);
 
   const onReset = useCallback(() => {
     setState(false);
-    onClick();
-    dispatch(openSnack({ msg: "Valores do bloco redefinidos", type: "info" }));
+    "function" === typeof onClick && onClick();
+    dispatch(openSnack({ msg, type: "info" }));
   }, [onClick, dispatch]);
 
   return (
     <Grid container spacing={0}>
-      <Grid item xs={5}>
-        <Slide style={{ transformOrigin: "180 180 180" }} in={state} mountOnEnter unmountOnExit>
-          <div>
-            <Button variant="text" fullWidth disableElevation disableRipple disableFocusRipple onClick={() => setState(false)}>
-              <CloseIcon />
-            </Button>
-          </div>
-        </Slide>
-      </Grid>
-      <Grid item xs={7}>
-        {!state && (
-          <Button variant="contained" color="default" fullWidth disableElevation onClick={() => setState(true)}>
-            <ResetIcon />
+      <Grid item xs={state ? 5 : false}>
+        {state && (
+          <Button variant="text" fullWidth disableElevation disableRipple disableFocusRipple onClick={() => setState(false)}>
+            <CloseIcon />
           </Button>
         )}
+      </Grid>
+      <Grid item xs={state ? 7 : 12}>
+        {!state &&
+          (Action ? (
+            <Action onClick={() => setState(true)} />
+          ) : (
+            <Button variant="contained" color="default" fullWidth disableElevation onClick={() => setState(true)}>
+              <ResetIcon />
+            </Button>
+          ))}
 
         {state && (
           <Button variant="contained" style={{ background: "#00e676", color: "#fff" }} fullWidth disableElevation onClick={onReset}>

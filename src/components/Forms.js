@@ -7,7 +7,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const btnStyle = theme => ({
   root: {
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(.8, 2),
+    minWidth: 0,
     textTransform: "none",
     fontWeight: 600,
   },

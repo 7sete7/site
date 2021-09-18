@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
 import { TextInput } from "../Forms";
+import ResetButton from "../ResetButton";
 import withStyles from "@material-ui/styles/withStyles";
 
 const BookCard = ({ classes, id, onSave, onDelete, ...props }) => {
@@ -22,7 +23,6 @@ const BookCard = ({ classes, id, onSave, onDelete, ...props }) => {
   }, [onSave, values, id]);
 
   const onDeleteClick = useCallback(() => {
-    //TODO delete confirmation
     "function" === typeof onDelete && onDelete({ id });
   }, [onDelete, id]);
 
@@ -51,9 +51,15 @@ const BookCard = ({ classes, id, onSave, onDelete, ...props }) => {
       <CardActions>
         <Grid container>
           <Grid item xs={5}>
-            <Button fullWidth variant="text" color="secondary" onClick={onDeleteClick}>
-              Excluir
-            </Button>
+            <ResetButton
+              onClick={onDeleteClick}
+              msg="Card excluído"
+              action={props => (
+                <Button {...props} fullWidth variant="text" color="secondary">
+                  Excluir
+                </Button>
+              )}
+            />
           </Grid>
           <Grid item xs={7}>
             <Button fullWidth variant="contained" color="primary" disableElevation onClick={onSaveClick}>
