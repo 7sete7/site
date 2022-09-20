@@ -82,7 +82,7 @@ const Colors = ({ classes }) => {
         </Grid>
 
         <Grid item xs={12}>
-          <Grid container spacing={1} justify="flex-end">
+          <Grid container spacing={1} justifyContent="flex-end">
             <Grid item xs={5} sm={4} md={3}>
               <ResetButton onClick={onReset} />
             </Grid>

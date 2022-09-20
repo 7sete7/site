@@ -25,7 +25,7 @@ const Header = ({ metadata = {}, contact = {}, loading }) => (
         <Grid container>
           {/* Logo */}
           <Hidden smDown>
-            <Grid item container md={4} justify="center">
+            <Grid item container md={4} justifyContent="center">
               <Typography variant="h4" color="inherit" noWrap>
                 {metadata.logo}
               </Typography>
@@ -45,7 +45,7 @@ const Header = ({ metadata = {}, contact = {}, loading }) => (
 
           {/* Icons */}
           <Hidden smDown>
-            <Grid item container wrap="nowrap" xs={4} justify="center">
+            <Grid item container wrap="nowrap" xs={4} justifyContent="center">
               <Box display="flex" justifyContent="space-evenly" flexGrow="0.4" alignItems="center">
                 {contact.linkedin && (
                   <Link href={contact.linkedin} target="_blank" color="textPrimary" underline="none">
@@ -82,7 +82,7 @@ const Header = ({ metadata = {}, contact = {}, loading }) => (
             </Grid>
           </Hidden>
           <Hidden mdUp>
-            <Grid item container wrap="nowrap" xs={4} justify="flex-end" alignItems="flex-end">
+            <Grid item container wrap="nowrap" xs={4} justifyContent="flex-end" alignItems="flex-end">
               <Link href="#contatos" color="textPrimary">
                 <Icon>
                   <MenuIcon />

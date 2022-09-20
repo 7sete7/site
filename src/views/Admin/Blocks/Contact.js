@@ -29,7 +29,7 @@ const Contact = () => {
           <TextInput label="Github" fullWidth value={values.github} onChange={onChange("github")} />
         </Grid>
         <Grid item xs={false} sm={6}></Grid>
-        <Grid container item xs={12} justify="flex-end" alignItems="flex-end" spacing={1}>
+        <Grid container item xs={12} justifyContent="flex-end" alignItems="flex-end" spacing={1}>
           <Grid item xs={5} sm={4} md={3}>
             <ResetButton onClick={onReset} />
           </Grid>
