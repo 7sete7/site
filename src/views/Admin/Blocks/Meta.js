@@ -1,6 +1,7 @@
 import React from "react";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 
 import { Button, TextInput } from "../../../components/Forms";
 import Block from "./Block";
@@ -40,7 +41,16 @@ const Meta = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={8}>
-          <Grid container spacing={1} justify="flex-end" alignItems="flex-end">
+          <Box py={3}>
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={6}>
+                <TextInput label="Tag Manager" fullWidth value={values.tagManager} onChange={onChange("tagManager")} />
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={8}>
+          <Grid container spacing={1} justifyContent="flex-end" alignItems="flex-end">
             <Grid item xs={6} sm={5} md={4}>
               <ResetButton onClick={onReset} />
             </Grid>

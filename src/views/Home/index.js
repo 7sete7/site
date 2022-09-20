@@ -30,7 +30,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import fetchData from "../../DAL/fetchAdminData";
-import { populate } from "../../store/homeReducer";
+import { populate, initScripts } from "../../store/homeReducer";
 
 const Home = ({ classes }) => {
   const dispatch = useDispatch();
@@ -41,7 +41,10 @@ const Home = ({ classes }) => {
   const CardComponent = useMemo(() => (isXSmall ? CompactCard : LongCard), [isXSmall]);
 
   useEffect(() => {
-    fetchData().then(data => dispatch(populate(data)));
+    fetchData().then(data => {
+      dispatch(populate(data))
+      dispatch(initScripts())
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
