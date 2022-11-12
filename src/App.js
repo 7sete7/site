@@ -20,10 +20,6 @@ const NotFound = () => {
   return <div>NotFound</div>;
 };
 
-const ROUTES = ["/admin", "/admin/login"];
-const hasSubdomain = window.location.pathname !== "/" && !ROUTES.includes(window.location.pathname);
-const subdomain = hasSubdomain ? /(\/.+?)(\/.+)?$/.exec(window.location.pathname)?.[1] : undefined;
-
 const App = () => {
   const dispatch = useDispatch();
   const { colors } = useSelector(getData);
@@ -41,7 +37,7 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <div style={{ height: "100vh" }}>
-        <Router basename={subdomain}>
+        <Router basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path="/" component={Home} />
             <MuiThemeProvider theme={createTheme(AdminTheme)}>
