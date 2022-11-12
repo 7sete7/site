@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "./store/homeReducer";
 import { getSnack, closeSnack } from "./store/adminReducer";
